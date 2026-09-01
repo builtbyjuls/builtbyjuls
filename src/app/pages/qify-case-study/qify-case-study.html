@@ -10,7 +10,7 @@
 
   <main id="main-content">
     <header class="case-hero">
-      <p class="eyebrow">Product concept - Validation stage</p>
+      <p class="eyebrow">Product concept - Foundation in progress</p>
       <h1>Q-ify: trusted help for allowed physical queues.</h1>
       <p class="lede">
         A proposed Philippine marketplace connecting customers who cannot remain in line with
@@ -19,7 +19,7 @@
       <dl class="case-meta">
         <div>
           <dt>Role</dt>
-          <dd>Product research and system planning</dd>
+          <dd>Product strategy, backend architecture, and implementation</dd>
         </div>
         <div>
           <dt>Platform</dt>
@@ -27,7 +27,7 @@
         </div>
         <div>
           <dt>Status</dt>
-          <dd>Not launched</dd>
+          <dd>Foundation in progress - Not launched</dd>
         </div>
       </dl>
     </header>
@@ -101,26 +101,36 @@
     </section>
 
     <section class="case-section" aria-labelledby="architecture-title">
-      <p class="eyebrow">Possible technical direction</p>
-      <h2 id="architecture-title">Start with a modular monolith.</h2>
+      <p class="eyebrow">Engineering direction</p>
+      <h2 id="architecture-title">Build the boundaries before the features.</h2>
       <p>
-        If validation succeeds, the proposed foundation is a mobile-first Angular application, a
-        Java 21 and Spring Boot backend, PostgreSQL, REST APIs, and background jobs for alerts and
-        task deadlines. A modular monolith keeps operational cost low while the workflow is still
-        changing.
+        Business demand remains unvalidated. In parallel, Q-ify is being developed as a synthetic
+        portfolio implementation using Java 21, Spring Boot, PostgreSQL, and a modular-monolith
+        architecture. Database persistence, integration testing with Testcontainers, and initial
+        module boundaries are in place.
+      </p>
+      <p>
+        The remaining Phase 0 plan covers a local development container stack, selected
+        AWS-compatible services through Floci, and CI. The architecture is intended to remain ready
+        for later AWS deployment without placing cloud concerns inside the domain modules.
       </p>
       <p class="hypothesis">
-        <strong>Proposed design:</strong> this is a direction, not a built system.
+        <strong>Current scope:</strong> Phase 0 is in progress. No business workflow or marketplace
+        has been launched, and no demand or transaction volume is being claimed.
       </p>
     </section>
 
     <section class="case-section" aria-labelledby="next-title">
-      <p class="eyebrow">Next step</p>
-      <h2 id="next-title">Run a concierge pilot before building the marketplace.</h2>
+      <p class="eyebrow">Next engineering milestone</p>
+      <h2 id="next-title">Complete the foundation, then prove one workflow.</h2>
       <p>
-        The next investment is not a native app. It is customer, runner, and venue research followed
-        by a tightly monitored manual pilot. Product development should begin only after demand,
-        permission, safety, payment flow, and contribution margin pass predefined gates.
+        After Phase 0, the next planned slice is Venues and Bookings inside the modular monolith. It
+        will be implemented and tested as one coherent workflow before pricing, payments, matching,
+        or operational automation are added.
+      </p>
+      <p>
+        A real marketplace launch remains separately gated by customer research, venue permission,
+        safety, payment viability, and unit economics.
       </p>
     </section>
 

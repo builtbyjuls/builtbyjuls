@@ -136,6 +136,10 @@ h1 {
   margin: 0;
 }
 
+.case-section > p:not(.eyebrow) + p:not(.eyebrow) {
+  margin-top: 22px;
+}
+
 .case-section ul,
 .case-section ol {
   margin: 0;
