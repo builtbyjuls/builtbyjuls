@@ -1,0 +1,160 @@
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<div class="shell">
+  <header class="site-header">
+    <a class="wordmark" routerLink="/" aria-label="Built by Juls home">builtbyjuls</a>
+    <nav aria-label="Case study navigation">
+      <a routerLink="/">Back to home</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <header class="case-hero">
+      <p class="eyebrow">Product concept - Validation stage</p>
+      <h1>Q-ify: trusted help for allowed physical queues.</h1>
+      <p class="lede">
+        A proposed Philippine marketplace connecting customers who cannot remain in line with
+        verified runners who can hold an ordinary, transferable place at an approved venue.
+      </p>
+      <dl class="case-meta">
+        <div>
+          <dt>Role</dt>
+          <dd>Product research and system planning</dd>
+        </div>
+        <div>
+          <dt>Platform</dt>
+          <dd>Mobile-first web</dd>
+        </div>
+        <div>
+          <dt>Status</dt>
+          <dd>Not launched</dd>
+        </div>
+      </dl>
+    </header>
+
+    <section class="case-section" aria-labelledby="problem-title">
+      <p class="eyebrow">The problem</p>
+      <h2 id="problem-title">Waiting costs more than time.</h2>
+      <p>
+        Physical queues can mean missed work, uncertain travel, heat or rain, and difficulty caring
+        for children or relatives. Existing options either move the burden to someone else or work
+        only when a venue has installed its own queue system.
+      </p>
+    </section>
+
+    <section class="case-section" aria-labelledby="research-title">
+      <p class="eyebrow">Research and evidence</p>
+      <h2 id="research-title">The behavior exists, but demand remains unproven.</h2>
+      <p>
+        Public research found local queue-management products, paid assistance for online ticket
+        queues, and an informal Metro Manila offer to wait in physical lines. It did not establish
+        transaction volume or prove a viable Philippine marketplace for physical queue handoffs.
+      </p>
+      <div class="evidence-note">
+        <strong>Evidence:</strong> phone-first access is credible in the Philippines, while
+        willingness to pay, repeat demand, and venue acceptance are still hypotheses.
+      </div>
+    </section>
+
+    <section class="case-section" aria-labelledby="scope-title">
+      <p class="eyebrow">The scope correction</p>
+      <h2 id="scope-title">The responsible product is narrower than the original idea.</h2>
+      <p>
+        Government transactions, clinics, and protected-priority queues introduce serious policy,
+        identity, privacy, and fairness risks. The proposed first version supports only ordinary
+        private-venue queues where handoffs are explicitly permitted.
+      </p>
+      <blockquote>
+        Q-ify is not a way to bypass a line. It is a transparent handoff of an ordinary queue
+        position where the venue allows it.
+      </blockquote>
+    </section>
+
+    <section class="case-section" aria-labelledby="experience-title">
+      <p class="eyebrow">Proposed experience</p>
+      <h2 id="experience-title">A controlled handoff, not an unrestricted errand.</h2>
+      <ol>
+        <li>The customer books only at an approved venue and reviews its handoff rules.</li>
+        <li>A verified runner checks in and posts limited status updates.</li>
+        <li>
+          The customer receives enough notice to travel before the queue reaches a nontransferable
+          checkpoint.
+        </li>
+        <li>Both parties confirm the handoff with a rotating PIN or QR code.</li>
+      </ol>
+    </section>
+
+    <section class="case-section" aria-labelledby="validation-title">
+      <p class="eyebrow">What must be validated</p>
+      <h2 id="validation-title">Trust and economics come before automation.</h2>
+      <ul>
+        <li>
+          Will enough customers pay a price that covers fair runner earnings, travel, support,
+          verification, and payments?
+        </li>
+        <li>Will private venues give written permission for queue handoffs?</li>
+        <li>Can customers arrive reliably within the handoff window?</li>
+        <li>
+          Can the service operate without creating safety, labor, privacy, or anti-fixer problems?
+        </li>
+      </ul>
+    </section>
+
+    <section class="case-section" aria-labelledby="architecture-title">
+      <p class="eyebrow">Possible technical direction</p>
+      <h2 id="architecture-title">Start with a modular monolith.</h2>
+      <p>
+        If validation succeeds, the proposed foundation is a mobile-first Angular application, a
+        Java 21 and Spring Boot backend, PostgreSQL, REST APIs, and background jobs for alerts and
+        task deadlines. A modular monolith keeps operational cost low while the workflow is still
+        changing.
+      </p>
+      <p class="hypothesis">
+        <strong>Proposed design:</strong> this is a direction, not a built system.
+      </p>
+    </section>
+
+    <section class="case-section" aria-labelledby="next-title">
+      <p class="eyebrow">Next step</p>
+      <h2 id="next-title">Run a concierge pilot before building the marketplace.</h2>
+      <p>
+        The next investment is not a native app. It is customer, runner, and venue research followed
+        by a tightly monitored manual pilot. Product development should begin only after demand,
+        permission, safety, payment flow, and contribution margin pass predefined gates.
+      </p>
+    </section>
+
+    <section class="case-section research-notes" aria-labelledby="sources-title">
+      <p class="eyebrow">Research notes</p>
+      <h2 id="sources-title">Sources behind the early direction.</h2>
+      <p>
+        The public scan was conducted on September 1, 2026. It supports the problem framing, not
+        proof of demand, market size, or completed transactions.
+      </p>
+      <ul>
+        <li>
+          <a
+            href="https://psa.gov.ph/content/percentage-households-internet-connection-increased-488-percent-2024-two-every-three"
+          >
+            Philippine Statistics Authority: 2024 internet access and device use
+          </a>
+        </li>
+        <li>
+          Philippine queue-management products:
+          <a href="https://ezpila.com/">ezpila</a>, <a href="https://pumila.ph/">Pumila.ph</a>, and
+          <a href="https://www.queuemate.tech/">QueueMate</a>
+        </li>
+        <li>
+          Philippine online ticket assistance:
+          <a href="https://getpitpass.com/">Pit Pass</a> and
+          <a href="https://quintickets.com/">Quin Tickets</a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>Q-ify case study</span>
+    <a routerLink="/">Back to builtbyjuls</a>
+  </footer>
+</div>
