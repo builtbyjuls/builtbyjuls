@@ -27,4 +27,13 @@ The production build is a prerendered static site in `dist/builtbyjuls/browser`.
 
 ## Deployment
 
-Pushes to `main` run the GitHub Pages workflow. The repository must have GitHub Pages configured to use GitHub Actions. The `CNAME` file declares `builtbyjuls.com`; DNS records still need to point the domain to GitHub Pages before launch.
+Cloudflare Pages builds and deploys the `main` branch through its Git integration.
+
+Use these project settings:
+
+- Production branch: `main`
+- Build command: `npm run build`
+- Build output directory: `dist/builtbyjuls/browser`
+- Root directory: leave blank
+
+The `.nvmrc` file pins the Node.js version used by the Cloudflare build. Connect `builtbyjuls.com` through the Pages project's Custom domains screen after the domain is active on Cloudflare DNS.
