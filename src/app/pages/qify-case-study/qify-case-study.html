@@ -10,7 +10,7 @@
 
   <main id="main-content">
     <header class="case-hero">
-      <p class="eyebrow">Product concept - Foundation in progress</p>
+      <p class="eyebrow">Synthetic implementation - Phase 1 complete</p>
       <h1>Q-ify: trusted help for allowed physical queues.</h1>
       <p class="lede">
         A proposed Philippine marketplace connecting customers who cannot remain in line with
@@ -22,12 +22,12 @@
           <dd>Product strategy, backend architecture, and implementation</dd>
         </div>
         <div>
-          <dt>Platform</dt>
+          <dt>Target experience</dt>
           <dd>Mobile-first web</dd>
         </div>
         <div>
           <dt>Status</dt>
-          <dd>Foundation in progress - Not launched</dd>
+          <dd>Phase 1 complete - Not launched</dd>
         </div>
       </dl>
     </header>
@@ -71,8 +71,14 @@
     </section>
 
     <section class="case-section" aria-labelledby="experience-title">
-      <p class="eyebrow">Proposed experience</p>
+      <p class="eyebrow">Product vision</p>
       <h2 id="experience-title">A controlled handoff, not an unrestricted errand.</h2>
+      <p>
+        The intended product is a two-sided, location-based marketplace. Customers request permitted
+        queue assistance, eligible runners accept tasks, and both sides coordinate queue progress
+        and customer arrival before a verified handoff. Payments, ratings, limited evidence, and
+        disputes may be added later.
+      </p>
       <ol>
         <li>The customer books only at an approved venue and reviews its handoff rules.</li>
         <li>A verified runner checks in and posts limited status updates.</li>
@@ -100,37 +106,74 @@
       </ul>
     </section>
 
-    <section class="case-section" aria-labelledby="architecture-title">
-      <p class="eyebrow">Engineering direction</p>
-      <h2 id="architecture-title">Build the boundaries before the features.</h2>
+    <section class="case-section" aria-labelledby="implementation-title">
+      <p class="eyebrow">Current implementation</p>
+      <h2 id="implementation-title">Phase 1 proves one narrow backend workflow.</h2>
       <p>
-        Business demand remains unvalidated. In parallel, Q-ify is being developed as a synthetic
-        portfolio implementation using Java 21, Spring Boot, PostgreSQL, and a modular-monolith
-        architecture. Database persistence, integration testing with Testcontainers, and initial
-        module boundaries are in place.
+        A caller can browse approved venues, request queue assistance for an eligible checkpoint and
+        future time, retrieve the request, and cancel it. Venue policy rejects unsupported handoffs
+        before a booking is stored, and repeated cancellation preserves the first result.
       </p>
       <p>
-        The remaining Phase 0 plan covers a local development container stack, selected
-        AWS-compatible services through Floci, and CI. The architecture is intended to remain ready
-        for later AWS deployment without placing cloud concerns inside the domain modules.
+        The implementation uses Java 21, Spring Boot, PostgreSQL, Flyway, and a modular-monolith
+        structure. Testcontainers exercises the real database engine. A deterministic local smoke
+        test verifies the packaged workflow, health endpoints, OpenAPI document, and cleanup; GitHub
+        Actions repeats the verification and image build.
       </p>
       <p class="hypothesis">
-        <strong>Current scope:</strong> Phase 0 is in progress. No business workflow or marketplace
-        has been launched, and no demand or transaction volume is being claimed.
+        <strong>Current limits:</strong> there is no authentication, runner assignment, matching,
+        payment flow, frontend, cloud deployment, or production traffic. The current lifecycle is
+        deliberately limited to requested and cancelled bookings.
+      </p>
+    </section>
+
+    <section class="case-section" aria-labelledby="architecture-title">
+      <p class="eyebrow">Architecture</p>
+      <h2 id="architecture-title">One deployable, with boundaries that tests can enforce.</h2>
+      <p>
+        A modular monolith keeps transactions, deployment, and debugging simple while there is no
+        evidence that independently deployed services are justified. Spring Modulith verifies the
+        Venues and Bookings modules and their dependency direction.
+      </p>
+      <p>
+        Venues owns review state, checkpoints, eligibility rules, and its tables. Bookings owns the
+        request lifecycle and calls only the exported Venues application API before persistence. It
+        stores scalar venue identifiers rather than reading Venue repositories or tables.
+      </p>
+      <p>
+        Floci runs as a local AWS-compatible dependency, but the application does not use an AWS
+        adapter yet. Its local health check is not evidence of behavior on AWS; any future adapter
+        still requires verification against the real service.
+      </p>
+    </section>
+
+    <section class="case-section" aria-labelledby="process-title">
+      <p class="eyebrow">Engineering process</p>
+      <h2 id="process-title">Direction stays human-owned and evidence-based.</h2>
+      <p>
+        Q-ify uses an AI-assisted engineering workflow. I define and approve the product scope,
+        architecture, constraints, acceptance criteria, and final technical direction. Coding agents
+        support scoped implementation and review, while automated tests and CI verify accepted
+        changes.
+      </p>
+      <p>
+        <a href="https://github.com/builtbyjuls/q-ify">View the implementation on GitHub</a>
       </p>
     </section>
 
     <section class="case-section" aria-labelledby="next-title">
       <p class="eyebrow">Next engineering milestone</p>
-      <h2 id="next-title">Complete the foundation, then prove one workflow.</h2>
+      <h2 id="next-title">Add authenticated runner assignment.</h2>
       <p>
-        After Phase 0, the next planned slice is Venues and Bookings inside the modular monolith. It
-        will be implemented and tested as one coherent workflow before pricing, payments, matching,
-        or operational automation are added.
+        The next narrow slice is to define authenticated customer and runner actors, enforce booking
+        ownership, and add one concurrency-safe transition from requested work to runner acceptance.
+        It comes next because a booking cannot become marketplace work until an eligible runner can
+        own it safely.
       </p>
       <p>
-        A real marketplace launch remains separately gated by customer research, venue permission,
-        safety, payment viability, and unit economics.
+        Duplicate-request protection, pricing, payments, notifications, live queue updates, handoff
+        proof, a frontend, and cloud deployment remain postponed. A real marketplace launch is still
+        separately gated by customer research, venue permission, safety, and unit economics.
       </p>
     </section>
 

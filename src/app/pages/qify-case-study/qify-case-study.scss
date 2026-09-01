@@ -146,6 +146,11 @@ h1 {
   padding-left: 24px;
 }
 
+.case-section > p:not(.eyebrow) + ul,
+.case-section > p:not(.eyebrow) + ol {
+  margin-top: 22px;
+}
+
 .case-section li + li {
   margin-top: 12px;
 }

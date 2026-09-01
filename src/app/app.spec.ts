@@ -57,12 +57,15 @@ describe('App', () => {
     await fixture.whenStable();
 
     const content = (fixture.nativeElement as HTMLElement).textContent ?? '';
-    expect(content).toContain('Foundation in progress - Not launched');
-    expect(content).toContain('Phase 0 is in progress');
-    expect(content).toContain('integration testing with Testcontainers');
-    expect(content).toContain('remaining Phase 0 plan');
-    expect(content).toContain('Venues and Bookings');
-    expect(content).not.toContain('Product development should begin only after');
-    expect(meta.getTag("name='description'")?.content).toContain('Phase 0 foundation work');
+    expect(content).toContain('Phase 1 complete - Not launched');
+    expect(content).toContain('Phase 1 proves one narrow backend workflow');
+    expect(content).toContain('no authentication, runner assignment');
+    expect(content).toContain('View the implementation on GitHub');
+    expect(content).toContain('AI-assisted engineering workflow');
+    expect(content).not.toContain('Phase 0 is in progress');
+    expect(meta.getTag("name='description'")?.content).toContain('Phase 1 implements venue policy');
+    expect(meta.getTag("property='og:title'")?.content).toBe(
+      'Q-ify Backend Case Study | Julius Lapugot',
+    );
   });
 });

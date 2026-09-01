@@ -15,19 +15,19 @@ export class QifyCaseStudy implements OnInit {
 
   ngOnInit(): void {
     const description =
-      'Q-ify is an unlaunched marketplace concept and active Java backend portfolio implementation, with Phase 0 foundation work in progress.';
+      'Q-ify is an unlaunched synthetic Java backend for venue-approved queue assistance. Phase 1 implements venue policy and a narrow booking-request workflow.';
 
     this.meta.updateTag({ name: 'description', content: description });
     this.meta.updateTag({
       property: 'og:title',
-      content: 'Q-ify Engineering Case Study | Julius Lapugot',
+      content: 'Q-ify Backend Case Study | Julius Lapugot',
     });
     this.meta.updateTag({ property: 'og:description', content: description });
     this.meta.updateTag({ property: 'og:url', content: 'https://builtbyjuls.com/projects/q-ify' });
     this.meta.updateTag({ name: 'twitter:card', content: 'summary' });
     this.meta.updateTag({
       name: 'twitter:title',
-      content: 'Q-ify Engineering Case Study | Julius Lapugot',
+      content: 'Q-ify Backend Case Study | Julius Lapugot',
     });
     this.meta.updateTag({ name: 'twitter:description', content: description });
     this.meta.removeTag("property='og:image'");
