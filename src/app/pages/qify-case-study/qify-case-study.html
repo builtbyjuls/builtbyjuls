@@ -10,7 +10,7 @@
 
   <main id="main-content">
     <header class="case-hero">
-      <p class="eyebrow">Synthetic implementation - Phase 1 complete</p>
+      <p class="eyebrow">Synthetic implementation - Phase 2 complete</p>
       <h1>Q-ify: trusted help for allowed physical queues.</h1>
       <p class="lede">
         A proposed Philippine marketplace connecting customers who cannot remain in line with
@@ -27,7 +27,7 @@
         </div>
         <div>
           <dt>Status</dt>
-          <dd>Phase 1 complete - Not launched</dd>
+          <dd>Phase 2 complete - Not launched</dd>
         </div>
       </dl>
     </header>
@@ -79,6 +79,11 @@
         and customer arrival before a verified handoff. Payments, ratings, limited evidence, and
         disputes may be added later.
       </p>
+      <p class="hypothesis">
+        <strong>Implemented scope:</strong> Phase 2 stops at runner acceptance. Live queue
+        execution, tracking, arrival coordination, handoff proof, payments, and the customer-facing
+        experience remain product vision, not implemented capability.
+      </p>
       <ol>
         <li>The customer books only at an approved venue and reviews its handoff rules.</li>
         <li>A verified runner checks in and posts limited status updates.</li>
@@ -124,6 +129,14 @@
           (click)="selectPhase('phase1')"
         >
           Phase 1
+        </button>
+        <button
+          type="button"
+          data-phase="phase2"
+          [attr.aria-pressed]="selectedPhase === 'phase2'"
+          (click)="selectPhase('phase2')"
+        >
+          Phase 2
         </button>
         <button
           type="button"
@@ -181,13 +194,38 @@
               </dd>
             </dl>
           }
-          @case ('next') {
-            <h2 id="progress-title">Authenticated runner assignment.</h2>
+          @case ('phase2') {
+            <h2 id="progress-title">Runner dispatch workflow complete.</h2>
             <dl class="phase-detail">
               <dt>Outcome</dt>
               <dd>
-                Define customer and runner actors, booking ownership, and concurrency-safe
-                acceptance.
+                A verified, available runner can discover an eligible request and atomically accept
+                it, assigning the booking and engaging the runner.
+              </dd>
+              <dt>Decisions</dt>
+              <dd>
+                Discovery stays pull-based and advisory. Acceptance locks the runner before the
+                booking and repeats eligibility checks inside one transaction.
+              </dd>
+              <dt>Verified by</dt>
+              <dd>
+                60 automated tests, concurrency coverage, a deterministic runtime smoke workflow,
+                and passing CI.
+              </dd>
+              <dt>Limits</dt>
+              <dd>
+                Demo APIs remain unauthenticated. There is no automatic matching, assignment
+                completion, payments, frontend, cloud deployment, or production traffic.
+              </dd>
+            </dl>
+          }
+          @case ('next') {
+            <h2 id="progress-title">Complete the assignment lifecycle.</h2>
+            <dl class="phase-detail">
+              <dt>Outcome</dt>
+              <dd>
+                Add a verified completion transition and release the engaged runner safely for later
+                work.
               </dd>
               <dt>Decisions</dt>
               <dd>Planned direction, not completed implementation.</dd>
@@ -195,8 +233,8 @@
               <dd>Public claims will change only after implementation, tests, and CI pass.</dd>
               <dt>Limits</dt>
               <dd>
-                Pricing, payments, live updates, handoff proof, frontend, and cloud deployment
-                remain postponed.
+                Authentication, pricing, payments, live execution, handoff proof, frontend, and
+                cloud deployment remain postponed.
               </dd>
             </dl>
           }
@@ -210,12 +248,13 @@
       <p>
         A modular monolith keeps transactions, deployment, and debugging simple while there is no
         evidence that independently deployed services are justified. Spring Modulith verifies the
-        Venues and Bookings modules and their dependency direction.
+        dependency graph across Venues, Bookings, Runners, and Dispatch.
       </p>
       <p>
-        Venues owns review state, checkpoints, eligibility rules, and its tables. Bookings owns the
-        request lifecycle and calls only the exported Venues application API before persistence. It
-        stores scalar venue identifiers rather than reading Venue repositories or tables.
+        Each module owns its data and exposes application APIs across its boundary. Dispatch filters
+        opportunities and coordinates acceptance through Bookings and Runners, with no direct Venues
+        dependency. It locks the runner before the booking and rechecks policy in one transaction so
+        concurrent requests cannot assign the same booking or runner twice.
       </p>
       <p>
         Floci runs as a local AWS-compatible dependency, but the application does not use an AWS
@@ -229,12 +268,13 @@
       <h2 id="process-title">Direction stays human-owned and evidence-based.</h2>
       <p>
         Q-ify uses an AI-assisted engineering workflow. I define and approve the product scope,
-        architecture, constraints, acceptance criteria, and final technical direction. Coding agents
-        support scoped implementation and review, while automated tests and CI verify accepted
-        changes.
+        architecture, constraints, acceptance criteria, delivery sequence, and final technical
+        direction. Coding agents assist with scoped implementation and pre-commit review, while
+        automated tests and CI verify accepted changes. I remain responsible for the design, code,
+        tests, documentation, and technical decisions.
       </p>
       <p>
-        <a href="https://github.com/builtbyjuls/q-ify">View the implementation on GitHub</a>
+        <a href="https://github.com/builtbyjuls/q-ify">View Q-ify on GitHub</a>
       </p>
     </section>
 

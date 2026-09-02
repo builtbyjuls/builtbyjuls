@@ -26,6 +26,8 @@ describe('App', () => {
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('h1')?.textContent).toContain('reliable Java systems');
+    expect(compiled.textContent).toContain('Synthetic implementation - Phase 2 complete');
+    expect(compiled.textContent).toContain('concurrency-safe runner acceptance');
   });
 
   it('should restore complete home social metadata after route navigation', async () => {
@@ -58,12 +60,17 @@ describe('App', () => {
 
     const compiled = fixture.nativeElement as HTMLElement;
     let content = compiled.textContent ?? '';
-    expect(content).toContain('Phase 1 complete - Not launched');
-    expect(content).toContain('Venue and booking workflow complete');
-    expect(content).toContain('No authentication, runner assignment');
-    expect(content).toContain('View the implementation on GitHub');
+    expect(content).toContain('Phase 2 complete - Not launched');
+    expect(content).toContain('Runner dispatch workflow complete');
+    expect(content).toContain('Demo APIs remain unauthenticated');
+    expect(content).toContain('View Q-ify on GitHub');
     expect(content).toContain('AI-assisted engineering workflow');
+    expect(content).toContain('I remain responsible for the design, code, tests');
+    expect(content).toContain('Phase 2 stops at runner acceptance');
     expect(content).not.toContain('Phase 0 is in progress');
+
+    const phase2 = compiled.querySelector<HTMLButtonElement>('[data-phase="phase2"]');
+    expect(phase2?.getAttribute('aria-pressed')).toBe('true');
 
     const phase0 = compiled.querySelector<HTMLButtonElement>('[data-phase="phase0"]');
     phase0?.click();
@@ -73,16 +80,26 @@ describe('App', () => {
     expect(content).toContain('Foundation complete');
     expect(content).toContain('No venue or booking behavior existed yet');
 
+    const phase1 = compiled.querySelector<HTMLButtonElement>('[data-phase="phase1"]');
+    phase1?.click();
+    fixture.detectChanges();
+    content = compiled.textContent ?? '';
+    expect(phase1?.getAttribute('aria-pressed')).toBe('true');
+    expect(content).toContain('Venue and booking workflow complete');
+    expect(content).toContain('No authentication, runner assignment');
+
     const next = compiled.querySelector<HTMLButtonElement>('[data-phase="next"]');
     next?.click();
     fixture.detectChanges();
     content = compiled.textContent ?? '';
     expect(next?.getAttribute('aria-pressed')).toBe('true');
-    expect(content).toContain('Authenticated runner assignment');
+    expect(content).toContain('Complete the assignment lifecycle');
     expect(content).toContain('Planned direction, not completed implementation');
-    expect(meta.getTag("name='description'")?.content).toContain('Phase 1 implements venue policy');
+    expect(meta.getTag("name='description'")?.content).toContain(
+      'Phase 2 connects booking requests to concurrency-safe runner acceptance',
+    );
     expect(meta.getTag("property='og:title'")?.content).toBe(
-      'Q-ify Backend Case Study | Julius Lapugot',
+      'Q-ify Phase 2 Backend Case Study | Julius Lapugot',
     );
   });
 });

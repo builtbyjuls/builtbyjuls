@@ -187,6 +187,7 @@ blockquote {
   background: transparent;
   color: var(--muted);
   font: inherit;
+  white-space: nowrap;
   cursor: pointer;
 }
 
@@ -268,11 +269,12 @@ blockquote {
   }
 
   .phase-selector {
-    gap: 14px;
+    gap: 8px;
   }
 
   .phase-selector button {
     flex: 1;
+    font-size: 0.875rem;
   }
 
   .phase-detail {

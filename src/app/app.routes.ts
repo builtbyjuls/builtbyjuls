@@ -11,7 +11,7 @@ export const routes: Routes = [
   {
     path: 'projects/q-ify',
     component: QifyCaseStudy,
-    title: 'Q-ify Backend Case Study | Julius Lapugot',
+    title: 'Q-ify Phase 2 Backend Case Study | Julius Lapugot',
   },
   {
     path: '**',
