@@ -30,6 +30,23 @@ describe('App', () => {
     expect(compiled.textContent).toContain('concurrency-safe runner acceptance');
   });
 
+  it('should offer the condensed one-page resume from every resume link', async () => {
+    const fixture = TestBed.createComponent(App);
+    const router = TestBed.inject(Router);
+    await router.navigateByUrl('/');
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    const links = compiled.querySelectorAll<HTMLAnchorElement>(
+      'a[href="/resume/Julius_Cessar_Lapugot_Resume_One_Page_Condensed.pdf"]',
+    );
+    expect(links.length).toBe(2);
+    links.forEach((link) => {
+      expect(link.download).toBe('Julius_Cessar_Lapugot_Resume_One_Page_Condensed.pdf');
+    });
+  });
+
   it('should restore complete home social metadata after route navigation', async () => {
     const fixture = TestBed.createComponent(App);
     const router = TestBed.inject(Router);
