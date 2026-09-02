@@ -172,6 +172,57 @@ blockquote {
   line-height: 1.7;
 }
 
+.phase-selector {
+  display: flex;
+  gap: 22px;
+  margin: 0 0 26px;
+  border-bottom: 1px solid var(--line);
+}
+
+.phase-selector button {
+  min-height: 44px;
+  padding: 0 0 10px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  cursor: pointer;
+}
+
+.phase-selector button:hover,
+.phase-selector button:focus-visible {
+  color: var(--ink);
+}
+
+.phase-selector button:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 4px;
+}
+
+.phase-selector button[aria-pressed='true'] {
+  border-bottom-color: var(--green);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.phase-detail {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 10px 20px;
+  margin: 0;
+}
+
+.phase-detail dt {
+  color: var(--green);
+  font-weight: 700;
+}
+
+.phase-detail dd {
+  margin: 0;
+  line-height: 1.7;
+}
+
 .research-notes a {
   text-underline-offset: 4px;
 }
@@ -214,5 +265,22 @@ blockquote {
   .case-meta dt {
     display: inline;
     margin-right: 7px;
+  }
+
+  .phase-selector {
+    gap: 14px;
+  }
+
+  .phase-selector button {
+    flex: 1;
+  }
+
+  .phase-detail {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+
+  .phase-detail dd + dt {
+    margin-top: 8px;
   }
 }

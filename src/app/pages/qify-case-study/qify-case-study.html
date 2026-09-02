@@ -106,25 +106,102 @@
       </ul>
     </section>
 
-    <section class="case-section" aria-labelledby="implementation-title">
-      <p class="eyebrow">Current implementation</p>
-      <h2 id="implementation-title">Phase 1 proves one narrow backend workflow.</h2>
-      <p>
-        A caller can browse approved venues, request queue assistance for an eligible checkpoint and
-        future time, retrieve the request, and cancel it. Venue policy rejects unsupported handoffs
-        before a booking is stored, and repeated cancellation preserves the first result.
-      </p>
-      <p>
-        The implementation uses Java 21, Spring Boot, PostgreSQL, Flyway, and a modular-monolith
-        structure. Testcontainers exercises the real database engine. A deterministic local smoke
-        test verifies the packaged workflow, health endpoints, OpenAPI document, and cleanup; GitHub
-        Actions repeats the verification and image build.
-      </p>
-      <p class="hypothesis">
-        <strong>Current limits:</strong> there is no authentication, runner assignment, matching,
-        payment flow, frontend, cloud deployment, or production traffic. The current lifecycle is
-        deliberately limited to requested and cancelled bookings.
-      </p>
+    <section class="case-section phase-progress" aria-labelledby="progress-title">
+      <p class="eyebrow">Engineering progress</p>
+      <div class="phase-selector" aria-label="Q-ify development phases">
+        <button
+          type="button"
+          data-phase="phase0"
+          [attr.aria-pressed]="selectedPhase === 'phase0'"
+          (click)="selectPhase('phase0')"
+        >
+          Phase 0
+        </button>
+        <button
+          type="button"
+          data-phase="phase1"
+          [attr.aria-pressed]="selectedPhase === 'phase1'"
+          (click)="selectPhase('phase1')"
+        >
+          Phase 1
+        </button>
+        <button
+          type="button"
+          data-phase="next"
+          [attr.aria-pressed]="selectedPhase === 'next'"
+          (click)="selectPhase('next')"
+        >
+          Next
+        </button>
+      </div>
+
+      <div class="phase-panel" aria-live="polite">
+        @switch (selectedPhase) {
+          @case ('phase0') {
+            <h2 id="progress-title">Foundation complete.</h2>
+            <dl class="phase-detail">
+              <dt>Outcome</dt>
+              <dd>
+                Established a reproducible Java backend foundation before introducing business
+                behavior.
+              </dd>
+              <dt>Decisions</dt>
+              <dd>
+                Modular monolith, module-owned PostgreSQL data, and local AWS-compatible
+                infrastructure through Floci.
+              </dd>
+              <dt>Verified by</dt>
+              <dd>
+                Flyway, Spring Modulith tests, Testcontainers, deterministic smoke verification, and
+                CI.
+              </dd>
+              <dt>Limits</dt>
+              <dd>No venue or booking behavior existed yet.</dd>
+            </dl>
+          }
+          @case ('phase1') {
+            <h2 id="progress-title">Venue and booking workflow complete.</h2>
+            <dl class="phase-detail">
+              <dt>Outcome</dt>
+              <dd>
+                A caller can browse approved venues, request queue assistance, retrieve the request,
+                and cancel it.
+              </dd>
+              <dt>Decisions</dt>
+              <dd>
+                Venue policy runs before persistence, Bookings uses the exported Venues API, and the
+                lifecycle stays deliberately narrow.
+              </dd>
+              <dt>Verified by</dt>
+              <dd>Module, database, API, smoke, and CI verification.</dd>
+              <dt>Limits</dt>
+              <dd>
+                No authentication, runner assignment, payments, frontend, cloud deployment, or
+                production traffic.
+              </dd>
+            </dl>
+          }
+          @case ('next') {
+            <h2 id="progress-title">Authenticated runner assignment.</h2>
+            <dl class="phase-detail">
+              <dt>Outcome</dt>
+              <dd>
+                Define customer and runner actors, booking ownership, and concurrency-safe
+                acceptance.
+              </dd>
+              <dt>Decisions</dt>
+              <dd>Planned direction, not completed implementation.</dd>
+              <dt>Verified by</dt>
+              <dd>Public claims will change only after implementation, tests, and CI pass.</dd>
+              <dt>Limits</dt>
+              <dd>
+                Pricing, payments, live updates, handoff proof, frontend, and cloud deployment
+                remain postponed.
+              </dd>
+            </dl>
+          }
+        }
+      </div>
     </section>
 
     <section class="case-section" aria-labelledby="architecture-title">
@@ -158,22 +235,6 @@
       </p>
       <p>
         <a href="https://github.com/builtbyjuls/q-ify">View the implementation on GitHub</a>
-      </p>
-    </section>
-
-    <section class="case-section" aria-labelledby="next-title">
-      <p class="eyebrow">Next engineering milestone</p>
-      <h2 id="next-title">Add authenticated runner assignment.</h2>
-      <p>
-        The next narrow slice is to define authenticated customer and runner actors, enforce booking
-        ownership, and add one concurrency-safe transition from requested work to runner acceptance.
-        It comes next because a booking cannot become marketplace work until an eligible runner can
-        own it safely.
-      </p>
-      <p>
-        Duplicate-request protection, pricing, payments, notifications, live queue updates, handoff
-        proof, a frontend, and cloud deployment remain postponed. A real marketplace launch is still
-        separately gated by customer research, venue permission, safety, and unit economics.
       </p>
     </section>
 

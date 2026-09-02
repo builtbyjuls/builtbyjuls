@@ -3,6 +3,8 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 
+type QifyPhase = 'phase0' | 'phase1' | 'next';
+
 @Component({
   selector: 'app-qify-case-study',
   imports: [RouterLink],
@@ -12,6 +14,12 @@ import { RouterLink } from '@angular/router';
 export class QifyCaseStudy implements OnInit {
   private readonly meta = inject(Meta);
   private readonly document = inject(DOCUMENT);
+
+  selectedPhase: QifyPhase = 'phase1';
+
+  selectPhase(phase: QifyPhase): void {
+    this.selectedPhase = phase;
+  }
 
   ngOnInit(): void {
     const description =
