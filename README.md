@@ -25,6 +25,8 @@ npm run format:check
 
 The production build is a prerendered static site in `dist/builtbyjuls/browser`.
 
+GitHub Actions runs the same checks for pull requests and pushes to `main`. To make CI a deployment gate, protect `main`, require the `Verify portfolio` status check, and merge through pull requests. Without that rule, Cloudflare and GitHub Actions react to a direct push independently.
+
 ## Deployment
 
 Cloudflare Workers Builds deploys the `main` branch through its Git integration. Wrangler serves the prerendered site as static assets and falls back to Angular for unknown client-side routes.
