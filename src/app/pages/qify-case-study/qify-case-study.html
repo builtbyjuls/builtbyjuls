@@ -10,11 +10,11 @@
 
   <main id="main-content">
     <header class="case-hero">
-      <p class="eyebrow">Synthetic implementation - Phase 2 complete</p>
-      <h1>Q-ify: trusted help for allowed physical queues.</h1>
+      <p class="eyebrow">Synthetic implementation - Phase 3 complete</p>
+      <h1>Q-ify: a marketplace for delegating time-consuming, transferable queues.</h1>
       <p class="lede">
-        A proposed Philippine marketplace connecting customers who cannot remain in line with
-        verified runners who can hold an ordinary, transferable place at an approved venue.
+        Q-ify explores how customers can delegate permitted private-sector queues to verified
+        runners, receive controlled progress updates, and arrive when a handoff is ready.
       </p>
       <dl class="case-meta">
         <div>
@@ -23,11 +23,11 @@
         </div>
         <div>
           <dt>Target experience</dt>
-          <dd>Mobile-first web</dd>
+          <dd>Future mobile-first customer and runner applications</dd>
         </div>
         <div>
           <dt>Status</dt>
-          <dd>Phase 2 complete - Not launched</dd>
+          <dd>Phase 3 complete - Not launched</dd>
         </div>
       </dl>
     </header>
@@ -48,7 +48,8 @@
       <p>
         Public research found local queue-management products, paid assistance for online ticket
         queues, and an informal Metro Manila offer to wait in physical lines. It did not establish
-        transaction volume or prove a viable Philippine marketplace for physical queue handoffs.
+        transaction volume or prove a viable Philippine marketplace for private-sector queue
+        assistance.
       </p>
       <div class="evidence-note">
         <strong>Evidence:</strong> phone-first access is credible in the Philippines, while
@@ -56,63 +57,62 @@
       </div>
     </section>
 
-    <section class="case-section" aria-labelledby="scope-title">
-      <p class="eyebrow">The scope correction</p>
-      <h2 id="scope-title">The responsible product is narrower than the original idea.</h2>
+    <section class="case-section" aria-labelledby="direction-title">
+      <p class="eyebrow">Refined product direction</p>
+      <h2 id="direction-title">Permitted private-sector queues and on-site errands.</h2>
       <p>
-        Government transactions, clinics, and protected-priority queues introduce serious policy,
-        identity, privacy, and fairness risks. The proposed first version supports only ordinary
-        private-venue queues where handoffs are explicitly permitted.
+        The product vision is a B2C private-sector pasuyo marketplace for delegating time-consuming,
+        transferable queues and authorized on-site errands. It is not an unrestricted proxy service.
+        Venue and organizer rules determine whether a queue, handoff, or purchase is allowed.
       </p>
+      <ul>
+        <li>Limited food and retail product releases</li>
+        <li>Warehouse, clearance, and sample sales</li>
+        <li>Restaurant or event waitlist holding</li>
+        <li>Event merchandise queues</li>
+        <li>In-store availability checks and permitted on-site purchasing</li>
+      </ul>
       <blockquote>
-        Q-ify is not a way to bypass a line. It is a transparent handoff of an ordinary queue
-        position where the venue allows it.
+        Q-ify does not bypass a line. Venue and organizer policy must permit the assistance and any
+        later handoff.
       </blockquote>
     </section>
 
-    <section class="case-section" aria-labelledby="experience-title">
+    <section class="case-section" aria-labelledby="vision-title">
       <p class="eyebrow">Product vision</p>
-      <h2 id="experience-title">A controlled handoff, not an unrestricted errand.</h2>
+      <h2 id="vision-title">A controlled customer-runner workflow.</h2>
       <p>
-        The intended product is a two-sided, location-based marketplace. Customers request permitted
-        queue assistance, eligible runners accept tasks, and both sides coordinate queue progress
-        and customer arrival before a verified handoff. Payments, ratings, limited evidence, and
-        disputes may be added later.
+        In the envisioned marketplace, a customer requests help only for an approved venue and
+        allowed queue type. A verified runner accepts the work, shares limited progress, and gives
+        the customer notice to arrive for a permitted handoff.
       </p>
       <p class="hypothesis">
-        <strong>Implemented scope:</strong> Phase 2 stops at runner acceptance. Live queue
-        execution, tracking, arrival coordination, handoff proof, payments, and the customer-facing
-        experience remain product vision, not implemented capability.
+        <strong>Product vision, not market proof:</strong> Q-ify has no launched marketplace, venue
+        partners, customers, transactions, or validated commercial demand.
       </p>
-      <ol>
-        <li>The customer books only at an approved venue and reviews its handoff rules.</li>
-        <li>A verified runner checks in and posts limited status updates.</li>
-        <li>
-          The customer receives enough notice to travel before the queue reaches a nontransferable
-          checkpoint.
-        </li>
-        <li>Both parties confirm the handoff with a rotating PIN or QR code.</li>
-      </ol>
     </section>
 
     <section class="case-section" aria-labelledby="validation-title">
       <p class="eyebrow">What must be validated</p>
-      <h2 id="validation-title">Trust and economics come before automation.</h2>
+      <h2 id="validation-title">Demand, permission, safety, and economics remain open.</h2>
       <ul>
         <li>
           Will enough customers pay a price that covers fair runner earnings, travel, support,
           verification, and payments?
         </li>
-        <li>Will private venues give written permission for queue handoffs?</li>
-        <li>Can customers arrive reliably within the handoff window?</li>
         <li>
-          Can the service operate without creating safety, labor, privacy, or anti-fixer problems?
+          Will private venues and organizers give written permission for the intended handoffs?
+        </li>
+        <li>Can customers arrive reliably within a permitted handoff window?</li>
+        <li>
+          Can the service operate without creating safety, labor, privacy, anti-fixer, or
+          anti-scalping problems?
         </li>
       </ul>
     </section>
 
     <section class="case-section phase-progress" aria-labelledby="progress-title">
-      <p class="eyebrow">Engineering progress</p>
+      <p class="eyebrow">Current implementation</p>
       <div class="phase-selector" aria-label="Q-ify development phases">
         <button
           type="button"
@@ -140,6 +140,14 @@
         </button>
         <button
           type="button"
+          data-phase="phase3"
+          [attr.aria-pressed]="selectedPhase === 'phase3'"
+          (click)="selectPhase('phase3')"
+        >
+          Phase 3
+        </button>
+        <button
+          type="button"
           data-phase="next"
           [attr.aria-pressed]="selectedPhase === 'next'"
           (click)="selectPhase('next')"
@@ -164,12 +172,9 @@
                 infrastructure through Floci.
               </dd>
               <dt>Verified by</dt>
-              <dd>
-                Flyway, Spring Modulith tests, Testcontainers, deterministic smoke verification, and
-                CI.
-              </dd>
+              <dd>Flyway, Spring Modulith, Testcontainers, smoke verification, and CI.</dd>
               <dt>Limits</dt>
-              <dd>No venue or booking behavior existed yet.</dd>
+              <dd>No venue, booking, runner, or task behavior existed yet.</dd>
             </dl>
           }
           @case ('phase1') {
@@ -182,15 +187,13 @@
               </dd>
               <dt>Decisions</dt>
               <dd>
-                Venue policy runs before persistence, Bookings uses the exported Venues API, and the
-                lifecycle stays deliberately narrow.
+                Venue policy runs before persistence, and Bookings uses the exported Venues API.
               </dd>
               <dt>Verified by</dt>
               <dd>Module, database, API, smoke, and CI verification.</dd>
               <dt>Limits</dt>
               <dd>
-                No authentication, runner assignment, payments, frontend, cloud deployment, or
-                production traffic.
+                No authentication, runner assignment, payments, frontend, or production traffic.
               </dd>
             </dl>
           }
@@ -208,24 +211,45 @@
                 booking and repeats eligibility checks inside one transaction.
               </dd>
               <dt>Verified by</dt>
+              <dd>Module, API, integration, concurrency, smoke, and CI verification.</dd>
+              <dt>Limits</dt>
               <dd>
-                60 automated tests, concurrency coverage, a deterministic runtime smoke workflow,
-                and passing CI.
+                There is no queue-task execution, handoff, payments, frontend, or production
+                traffic.
+              </dd>
+            </dl>
+          }
+          @case ('phase3') {
+            <h2 id="progress-title">Queue-task workflow complete.</h2>
+            <dl class="phase-detail">
+              <dt>Outcome</dt>
+              <dd>
+                An assigned runner can start a task and move it in order from STARTED to CHECKED_IN,
+                QUEUEING, and READY_FOR_HANDOFF.
+              </dd>
+              <dt>Decisions</dt>
+              <dd>
+                The Tasks module depends only on Dispatch. Progress estimates are runner-declared,
+                append-only, and sequence ordered.
+              </dd>
+              <dt>Verified by</dt>
+              <dd>
+                Spring Modulith, Testcontainers integration tests, Docker Compose, CI, and Docker
+                image verification.
               </dd>
               <dt>Limits</dt>
               <dd>
-                Demo APIs remain unauthenticated. There is no automatic matching, assignment
-                completion, payments, frontend, cloud deployment, or production traffic.
+                The APIs are unauthenticated demos. Handoff, completion, failure, and runner release
+                are not implemented.
               </dd>
             </dl>
           }
           @case ('next') {
-            <h2 id="progress-title">Complete the assignment lifecycle.</h2>
+            <h2 id="progress-title">Finish a real handoff lifecycle before expanding scope.</h2>
             <dl class="phase-detail">
               <dt>Outcome</dt>
               <dd>
-                Add a verified completion transition and release the engaged runner safely for later
-                work.
+                Explore verified handoff, terminal completion and failure, and safe runner release.
               </dd>
               <dt>Decisions</dt>
               <dd>Planned direction, not completed implementation.</dd>
@@ -233,8 +257,8 @@
               <dd>Public claims will change only after implementation, tests, and CI pass.</dd>
               <dt>Limits</dt>
               <dd>
-                Authentication, pricing, payments, live execution, handoff proof, frontend, and
-                cloud deployment remain postponed.
+                Scout requests, proxy-completed purchases, pricing, payments, notifications,
+                authentication, frontend applications, and deployment remain future exploration.
               </dd>
             </dl>
           }
@@ -243,35 +267,58 @@
     </section>
 
     <section class="case-section" aria-labelledby="architecture-title">
-      <p class="eyebrow">Architecture</p>
+      <p class="eyebrow">Architecture and engineering decisions</p>
       <h2 id="architecture-title">One deployable, with boundaries that tests can enforce.</h2>
       <p>
-        A modular monolith keeps transactions, deployment, and debugging simple while there is no
-        evidence that independently deployed services are justified. Spring Modulith verifies the
-        dependency graph across Venues, Bookings, Runners, and Dispatch.
+        Q-ify is a Java 21 and Spring Boot modular monolith with PostgreSQL and Flyway persistence.
+        Spring Modulith verifies the module graph: Bookings to Venues, Runners to Venues, Dispatch
+        to Bookings and Runners, and Tasks to Dispatch.
       </p>
       <p>
-        Each module owns its data and exposes application APIs across its boundary. Dispatch filters
-        opportunities and coordinates acceptance through Bookings and Runners, with no direct Venues
-        dependency. It locks the runner before the booking and rechecks policy in one transaction so
-        concurrent requests cannot assign the same booking or runner twice.
+        Each module owns its data and exposes application APIs across its boundary. Floci provides
+        selected AWS-compatible services locally, but no AWS adapter or cloud deployment has been
+        verified.
+      </p>
+    </section>
+
+    <section class="case-section" aria-labelledby="concurrency-title">
+      <p class="eyebrow">Concurrency and transactions</p>
+      <h2 id="concurrency-title">The assignment must be safe under competing requests.</h2>
+      <p>
+        Opportunity discovery is advisory and does not reserve work. Acceptance locks the runner
+        before the booking and repeats eligibility checks in one transaction, preventing the same
+        runner or booking from being assigned twice under concurrent requests.
       </p>
       <p>
-        Floci runs as a local AWS-compatible dependency, but the application does not use an AWS
-        adapter yet. Its local health check is not evidence of behavior on AWS; any future adapter
-        still requires verification against the real service.
+        Phase 3 extends that care to task progress. A locked task allocates each append-only
+        estimate in deterministic sequence order. The implementation records controlled estimates;
+        it does not claim real-time location, venue, or customer verification.
+      </p>
+    </section>
+
+    <section class="case-section" aria-labelledby="limits-title">
+      <p class="eyebrow">Honest limitations</p>
+      <h2 id="limits-title">A backend demonstration, not an operating marketplace.</h2>
+      <p>
+        Q-ify is a synthetic portfolio implementation. It has no user-facing Q-ify application,
+        authenticated users, payments, notifications, production deployment, real AWS verification,
+        venue operations, or commercial transactions.
+      </p>
+      <p>
+        Concert-ticket and sneaker-release assistance are only future, policy-sensitive
+        possibilities. Q-ify does not claim to bypass ticket limits, named accounts, venue rules, or
+        anti-scalping protections. Government, immigration, school, bank, medical, biometric, and
+        impersonation scenarios are outside this direction.
       </p>
     </section>
 
     <section class="case-section" aria-labelledby="process-title">
-      <p class="eyebrow">Engineering process</p>
+      <p class="eyebrow">AI-assisted engineering workflow</p>
       <h2 id="process-title">Direction stays human-owned and evidence-based.</h2>
       <p>
-        Q-ify uses an AI-assisted engineering workflow. I define and approve the product scope,
-        architecture, constraints, acceptance criteria, delivery sequence, and final technical
-        direction. Coding agents assist with scoped implementation and pre-commit review, while
-        automated tests and CI verify accepted changes. I remain responsible for the design, code,
-        tests, documentation, and technical decisions.
+        I define the product scope, architecture, constraints, acceptance criteria, and delivery
+        sequence. Coding agents assist with scoped implementation and review. I remain accountable
+        for the final design, code, tests, documentation, and technical decisions.
       </p>
       <p>
         <a href="https://github.com/builtbyjuls/q-ify">View Q-ify on GitHub</a>
