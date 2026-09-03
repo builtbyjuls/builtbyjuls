@@ -10,7 +10,7 @@
 
   <main id="main-content">
     <header class="case-hero">
-      <p class="eyebrow">Synthetic implementation - Phase 3 complete</p>
+      <p class="eyebrow">Synthetic implementation - Phase 4 complete</p>
       <h1>Q-ify: a marketplace for delegating time-consuming, transferable queues.</h1>
       <p class="lede">
         Q-ify explores how customers can delegate permitted private-sector queues to verified
@@ -27,7 +27,7 @@
         </div>
         <div>
           <dt>Status</dt>
-          <dd>Phase 3 complete - Not launched</dd>
+          <dd>Phase 4 complete - Not launched</dd>
         </div>
       </dl>
     </header>
@@ -148,6 +148,14 @@
         </button>
         <button
           type="button"
+          data-phase="phase4"
+          [attr.aria-pressed]="selectedPhase === 'phase4'"
+          (click)="selectPhase('phase4')"
+        >
+          Phase 4
+        </button>
+        <button
+          type="button"
           data-phase="next"
           [attr.aria-pressed]="selectedPhase === 'next'"
           (click)="selectPhase('next')"
@@ -244,12 +252,40 @@
               </dd>
             </dl>
           }
-          @case ('next') {
-            <h2 id="progress-title">Finish a real handoff lifecycle before expanding scope.</h2>
+          @case ('phase4') {
+            <h2 id="progress-title">Proof-based terminal workflow complete.</h2>
             <dl class="phase-detail">
               <dt>Outcome</dt>
               <dd>
-                Explore verified handoff, terminal completion and failure, and safe runner release.
+                A task ready for handoff can close with a valid customer-held completion proof or a
+                controlled operational failure. The related booking, assignment, and runner state
+                close together.
+              </dd>
+              <dt>Decisions</dt>
+              <dd>
+                The completion proof is returned only when a booking is created, while a verifier is
+                stored. The Tasks module coordinates terminal closure with one locking order across
+                the task, runner, booking, and assignment.
+              </dd>
+              <dt>Verified by</dt>
+              <dd>
+                Spring Modulith, Testcontainers integration and concurrency tests, Docker Compose,
+                CI, and Docker image verification.
+              </dd>
+              <dt>Limits</dt>
+              <dd>
+                A proof establishes secret possession only. It does not verify identity, physical
+                handoff, venue approval, or transfer.
+              </dd>
+            </dl>
+          }
+          @case ('next') {
+            <h2 id="progress-title">Authenticate the actors before widening the marketplace.</h2>
+            <dl class="phase-detail">
+              <dt>Outcome</dt>
+              <dd>
+                Explore authenticated customer confirmation and authorization before adding more
+                marketplace workflows.
               </dd>
               <dt>Decisions</dt>
               <dd>Planned direction, not completed implementation.</dd>
@@ -258,7 +294,7 @@
               <dt>Limits</dt>
               <dd>
                 Scout requests, proxy-completed purchases, pricing, payments, notifications,
-                authentication, frontend applications, and deployment remain future exploration.
+                frontend applications, and deployment remain future exploration.
               </dd>
             </dl>
           }
@@ -279,20 +315,26 @@
         selected AWS-compatible services locally, but no AWS adapter or cloud deployment has been
         verified.
       </p>
+      <p>
+        Phase 4 keeps terminal coordination inside the modular monolith. The Tasks module closes a
+        task and its related runner, booking, and assignment using a defined locking order and one
+        recorded outcome time.
+      </p>
     </section>
 
     <section class="case-section" aria-labelledby="concurrency-title">
       <p class="eyebrow">Concurrency and transactions</p>
-      <h2 id="concurrency-title">The assignment must be safe under competing requests.</h2>
+      <h2 id="concurrency-title">One competing terminal outcome must win.</h2>
       <p>
         Opportunity discovery is advisory and does not reserve work. Acceptance locks the runner
         before the booking and repeats eligibility checks in one transaction, preventing the same
         runner or booking from being assigned twice under concurrent requests.
       </p>
       <p>
-        Phase 3 extends that care to task progress. A locked task allocates each append-only
-        estimate in deterministic sequence order. The implementation records controlled estimates;
-        it does not claim real-time location, venue, or customer verification.
+        Phase 4 serializes competing completion and failure requests so one terminal outcome wins.
+        If releasing the runner fails, the terminal changes roll back together. Progress estimates
+        remain runner-declared, append-only records; they do not claim real-time location, venue, or
+        customer verification.
       </p>
     </section>
 
@@ -303,6 +345,11 @@
         Q-ify is a synthetic portfolio implementation. It has no user-facing Q-ify application,
         authenticated users, payments, notifications, production deployment, real AWS verification,
         venue operations, or commercial transactions.
+      </p>
+      <p>
+        The current completion proof demonstrates secret possession only. It does not establish a
+        customer's identity, physical handoff, venue approval, or a transferable entitlement. The
+        unauthenticated APIs are a demo boundary, not an operating control.
       </p>
       <p>
         Concert-ticket and sneaker-release assistance are only future, policy-sensitive
