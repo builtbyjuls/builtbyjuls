@@ -269,11 +269,12 @@ blockquote {
   }
 
   .phase-selector {
-    gap: 8px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0 8px;
   }
 
   .phase-selector button {
-    flex: 1;
     font-size: 0.875rem;
   }
 
