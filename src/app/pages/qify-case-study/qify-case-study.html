@@ -10,7 +10,7 @@
 
   <main id="main-content">
     <header class="case-hero">
-      <p class="eyebrow">Synthetic implementation - Phase 4 complete</p>
+      <p class="eyebrow">Synthetic implementation - Phase 5 complete</p>
       <h1>Q-ify: a marketplace for delegating time-consuming, transferable queues.</h1>
       <p class="lede">
         Q-ify explores how customers can delegate permitted private-sector queues to verified
@@ -27,7 +27,7 @@
         </div>
         <div>
           <dt>Status</dt>
-          <dd>Phase 4 complete - Not launched</dd>
+          <dd>Phase 5 complete - Not launched</dd>
         </div>
       </dl>
     </header>
@@ -156,6 +156,14 @@
         </button>
         <button
           type="button"
+          data-phase="phase5"
+          [attr.aria-pressed]="selectedPhase === 'phase5'"
+          (click)="selectPhase('phase5')"
+        >
+          Phase 5
+        </button>
+        <button
+          type="button"
           data-phase="next"
           [attr.aria-pressed]="selectedPhase === 'next'"
           (click)="selectPhase('next')"
@@ -279,13 +287,38 @@
               </dd>
             </dl>
           }
-          @case ('next') {
-            <h2 id="progress-title">Authenticate the actors before widening the marketplace.</h2>
+          @case ('phase5') {
+            <h2 id="progress-title">Authenticated ownership workflow complete.</h2>
             <dl class="phase-detail">
               <dt>Outcome</dt>
               <dd>
-                Explore authenticated customer confirmation and authorization before adding more
-                marketplace workflows.
+                Bound synthetic customers and runners can access only the booking and workflow
+                resources assigned to their actor type and reference.
+              </dd>
+              <dt>Decisions</dt>
+              <dd>
+                A stateless OAuth 2.0 JWT resource server validates configured token claims. The
+                Identity module maps an opaque issuer and subject to one active synthetic actor.
+              </dd>
+              <dt>Verified by</dt>
+              <dd>
+                Authentication and ownership API tests, Spring Modulith, Testcontainers, Docker
+                Compose smoke verification with local Keycloak, CI, and Docker image verification.
+              </dd>
+              <dt>Limits</dt>
+              <dd>
+                Keycloak and actor bindings are local fixtures. There is no account lifecycle, token
+                issuance, production identity configuration, rate limiting, or frontend.
+              </dd>
+            </dl>
+          }
+          @case ('next') {
+            <h2 id="progress-title">Define account and abuse controls before widening scope.</h2>
+            <dl class="phase-detail">
+              <dt>Outcome</dt>
+              <dd>
+                Define a narrow next slice only after account lifecycle, rate limiting, and abuse
+                controls have explicit acceptance criteria.
               </dd>
               <dt>Decisions</dt>
               <dd>Planned direction, not completed implementation.</dd>
@@ -294,7 +327,8 @@
               <dt>Limits</dt>
               <dd>
                 Scout requests, proxy-completed purchases, pricing, payments, notifications,
-                frontend applications, and deployment remain future exploration.
+                customer task progress, frontend applications, and deployment remain future
+                exploration.
               </dd>
             </dl>
           }
@@ -307,8 +341,9 @@
       <h2 id="architecture-title">One deployable, with boundaries that tests can enforce.</h2>
       <p>
         Q-ify is a Java 21 and Spring Boot modular monolith with PostgreSQL and Flyway persistence.
-        Spring Modulith verifies the module graph: Bookings to Venues, Runners to Venues, Dispatch
-        to Bookings and Runners, and Tasks to Dispatch.
+        Spring Modulith verifies the module graph: Identity has no module dependencies; Bookings and
+        Runners depend on Venues and Identity; Dispatch depends on Bookings, Runners, and Identity;
+        and Tasks depends on Dispatch and Identity.
       </p>
       <p>
         Each module owns its data and exposes application APIs across its boundary. Floci provides
@@ -316,9 +351,9 @@
         verified.
       </p>
       <p>
-        Phase 4 keeps terminal coordination inside the modular monolith. The Tasks module closes a
-        task and its related runner, booking, and assignment using a defined locking order and one
-        recorded outcome time.
+        Identity maps an opaque OIDC issuer and subject to one typed synthetic actor reference. It
+        stores no profile data or credentials, and business services receive trusted scalar actor
+        references rather than reading JWT claims directly.
       </p>
     </section>
 
@@ -336,20 +371,25 @@
         remain runner-declared, append-only records; they do not claim real-time location, venue, or
         customer verification.
       </p>
+      <p>
+        Phase 5 removes caller-supplied ownership from workflow access. Wrong actor types are
+        rejected, and cross-owner resources are not disclosed as accessible.
+      </p>
     </section>
 
     <section class="case-section" aria-labelledby="limits-title">
       <p class="eyebrow">Honest limitations</p>
       <h2 id="limits-title">A backend demonstration, not an operating marketplace.</h2>
       <p>
-        Q-ify is a synthetic portfolio implementation. It has no user-facing Q-ify application,
-        authenticated users, payments, notifications, production deployment, real AWS verification,
-        venue operations, or commercial transactions.
+        Q-ify is a synthetic portfolio implementation. It has no user-facing Q-ify application, real
+        users or production accounts, payments, notifications, production deployment, real AWS
+        verification, venue operations, or commercial transactions.
       </p>
       <p>
         The current completion proof demonstrates secret possession only. It does not establish a
-        customer's identity, physical handoff, venue approval, or a transferable entitlement. The
-        unauthenticated APIs are a demo boundary, not an operating control.
+        customer's identity, physical handoff, venue approval, or a transferable entitlement.
+        Authentication narrows API access, but it does not establish those real-world conditions or
+        make this synthetic implementation production-ready.
       </p>
       <p>
         Concert-ticket and sneaker-release assistance are only future, policy-sensitive
@@ -364,8 +404,9 @@
       <h2 id="process-title">Direction stays human-owned and evidence-based.</h2>
       <p>
         I define the product scope, architecture, constraints, acceptance criteria, and delivery
-        sequence. Coding agents assist with scoped implementation and review. I remain accountable
-        for the final design, code, tests, documentation, and technical decisions.
+        sequence. Coding agents assist with scoped implementation and pre-commit review. I verify
+        each accepted change locally and in CI, and remain accountable for the final design, code,
+        tests, documentation, and technical decisions.
       </p>
       <p>
         <a href="https://github.com/builtbyjuls/q-ify">View Q-ify on GitHub</a>

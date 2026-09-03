@@ -26,10 +26,8 @@ describe('App', () => {
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('h1')?.textContent).toContain('reliable Java systems');
-    expect(compiled.textContent).toContain('Synthetic implementation - Phase 4 complete');
-    expect(compiled.textContent).toContain(
-      'proof-based terminal task outcomes and restores runner availability',
-    );
+    expect(compiled.textContent).toContain('Synthetic implementation - Phase 5 complete');
+    expect(compiled.textContent).toContain('OIDC access tokens and owner-scoped workflow access');
   });
 
   it('should offer the condensed one-page resume from every resume link', async () => {
@@ -79,17 +77,17 @@ describe('App', () => {
 
     const compiled = fixture.nativeElement as HTMLElement;
     let content = compiled.textContent ?? '';
-    expect(content).toContain('Phase 4 complete - Not launched');
-    expect(content).toContain('Proof-based terminal workflow complete');
-    expect(content).toContain('A proof establishes secret possession only');
+    expect(content).toContain('Phase 5 complete - Not launched');
+    expect(content).toContain('Authenticated ownership workflow complete');
+    expect(content).toContain('Keycloak and actor bindings are local fixtures');
     expect(content).toContain('View Q-ify on GitHub');
     expect(content).toContain('AI-assisted engineering workflow');
-    expect(content).toContain('I remain accountable for the final design, code, tests');
+    expect(content).toContain('remain accountable for the final design, code, tests');
     expect(content).toContain('private-sector pasuyo marketplace');
     expect(content).not.toContain('Phase 0 is in progress');
 
-    const phase4 = compiled.querySelector<HTMLButtonElement>('[data-phase="phase4"]');
-    expect(phase4?.getAttribute('aria-pressed')).toBe('true');
+    const phase5 = compiled.querySelector<HTMLButtonElement>('[data-phase="phase5"]');
+    expect(phase5?.getAttribute('aria-pressed')).toBe('true');
 
     const phase0 = compiled.querySelector<HTMLButtonElement>('[data-phase="phase0"]');
     phase0?.click();
@@ -122,18 +120,26 @@ describe('App', () => {
     expect(content).toContain('Queue-task workflow complete');
     expect(content).toContain('READY_FOR_HANDOFF');
 
+    const phase4 = compiled.querySelector<HTMLButtonElement>('[data-phase="phase4"]');
+    phase4?.click();
+    fixture.detectChanges();
+    content = compiled.textContent ?? '';
+    expect(phase4?.getAttribute('aria-pressed')).toBe('true');
+    expect(content).toContain('Proof-based terminal workflow complete');
+    expect(content).toContain('A proof establishes secret possession only');
+
     const next = compiled.querySelector<HTMLButtonElement>('[data-phase="next"]');
     next?.click();
     fixture.detectChanges();
     content = compiled.textContent ?? '';
     expect(next?.getAttribute('aria-pressed')).toBe('true');
-    expect(content).toContain('Authenticate the actors before widening the marketplace');
+    expect(content).toContain('Define account and abuse controls before widening scope');
     expect(content).toContain('Planned direction, not completed implementation');
     expect(meta.getTag("name='description'")?.content).toContain(
       'private-sector pasuyo marketplace for permitted, transferable queues',
     );
     expect(meta.getTag("property='og:title'")?.content).toBe(
-      'Q-ify Phase 4 Backend Case Study | Julius Lapugot',
+      'Q-ify Phase 5 Backend Case Study | Julius Lapugot',
     );
   });
 });

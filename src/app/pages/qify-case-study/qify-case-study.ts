@@ -3,7 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 
-type QifyPhase = 'phase0' | 'phase1' | 'phase2' | 'phase3' | 'phase4' | 'next';
+type QifyPhase = 'phase0' | 'phase1' | 'phase2' | 'phase3' | 'phase4' | 'phase5' | 'next';
 
 @Component({
   selector: 'app-qify-case-study',
@@ -15,7 +15,7 @@ export class QifyCaseStudy implements OnInit {
   private readonly meta = inject(Meta);
   private readonly document = inject(DOCUMENT);
 
-  selectedPhase: QifyPhase = 'phase4';
+  selectedPhase: QifyPhase = 'phase5';
 
   selectPhase(phase: QifyPhase): void {
     this.selectedPhase = phase;
@@ -23,19 +23,19 @@ export class QifyCaseStudy implements OnInit {
 
   ngOnInit(): void {
     const description =
-      'Q-ify is an unlaunched synthetic Java backend exploring a private-sector pasuyo marketplace for permitted, transferable queues. Phase 4 completes proof-based terminal task outcomes.';
+      'Q-ify is an unlaunched synthetic Java backend exploring a private-sector pasuyo marketplace for permitted, transferable queues. Phase 5 adds OIDC access tokens and owner-scoped workflow access.';
 
     this.meta.updateTag({ name: 'description', content: description });
     this.meta.updateTag({
       property: 'og:title',
-      content: 'Q-ify Phase 4 Backend Case Study | Julius Lapugot',
+      content: 'Q-ify Phase 5 Backend Case Study | Julius Lapugot',
     });
     this.meta.updateTag({ property: 'og:description', content: description });
     this.meta.updateTag({ property: 'og:url', content: 'https://builtbyjuls.com/projects/q-ify' });
     this.meta.updateTag({ name: 'twitter:card', content: 'summary' });
     this.meta.updateTag({
       name: 'twitter:title',
-      content: 'Q-ify Phase 4 Backend Case Study | Julius Lapugot',
+      content: 'Q-ify Phase 5 Backend Case Study | Julius Lapugot',
     });
     this.meta.updateTag({ name: 'twitter:description', content: description });
     this.meta.removeTag("property='og:image'");
