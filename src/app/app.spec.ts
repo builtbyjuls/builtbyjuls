@@ -26,9 +26,9 @@ describe('App', () => {
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('h1')?.textContent).toContain('reliable Java systems');
-    expect(compiled.textContent).toContain('Synthetic implementation - Phase 6 complete');
+    expect(compiled.textContent).toContain('Synthetic implementation - API slice complete');
     expect(compiled.textContent).toContain(
-      'durable workflow events and an authenticated customer notification-feed API',
+      'API-only v1 slice for service offerings and queue requests',
     );
   });
 
@@ -68,7 +68,7 @@ describe('App', () => {
     expect(meta.getTag("property='og:image:height'")?.content).toBe('941');
   });
 
-  it('should present Q-ify implementation progress without claiming marketplace validation', async () => {
+  it('should present Q-ify progress and claims for the current API slice', async () => {
     const fixture = TestBed.createComponent(App);
     const router = TestBed.inject(Router);
     const meta = TestBed.inject(Meta);
@@ -79,77 +79,56 @@ describe('App', () => {
 
     const compiled = fixture.nativeElement as HTMLElement;
     let content = compiled.textContent ?? '';
-    expect(content).toContain('Phase 6 complete - Not launched');
-    expect(content).toContain('Durable customer notification feed complete');
-    expect(content).toContain('The feed is eventually consistent and not authoritative task state');
+    expect(content).toContain('API v1 slice complete - Not launched');
+    expect(content).toContain('Queue request API slice complete');
+    expect(content).toContain('There is no runner assignment');
     expect(content).toContain('View Q-ify on GitHub');
     expect(content).toContain('AI-assisted engineering workflow');
-    expect(content).toContain('remain accountable for the final design, code, tests');
+    expect(content).toContain('I keep final accountability for design, code, tests');
     expect(content).toContain('private-sector pasuyo marketplace');
-    expect(content).not.toContain('Phase 0 is in progress');
+    expect(content).not.toContain('Phase 6');
 
-    const phase6 = compiled.querySelector<HTMLButtonElement>('[data-phase="phase6"]');
-    expect(phase6?.getAttribute('aria-pressed')).toBe('true');
+    const phase2 = compiled.querySelector<HTMLButtonElement>('[data-phase="phase2"]');
+    expect(phase2?.getAttribute('aria-pressed')).toBe('true');
 
     const phase0 = compiled.querySelector<HTMLButtonElement>('[data-phase="phase0"]');
     phase0?.click();
     fixture.detectChanges();
     content = compiled.textContent ?? '';
     expect(phase0?.getAttribute('aria-pressed')).toBe('true');
-    expect(content).toContain('Foundation complete');
-    expect(content).toContain('No venue, booking, runner, or task behavior existed yet');
+    expect(content).toContain('Foundation layer complete.');
+    expect(content).toContain('Flyway migrations V1 through V5');
 
     const phase1 = compiled.querySelector<HTMLButtonElement>('[data-phase="phase1"]');
     phase1?.click();
     fixture.detectChanges();
     content = compiled.textContent ?? '';
     expect(phase1?.getAttribute('aria-pressed')).toBe('true');
-    expect(content).toContain('Venue and booking workflow complete');
-    expect(content).toContain('No authentication, runner assignment');
+    expect(content).toContain('Catalog and identity API baseline complete');
+    expect(content).toContain('/api/v1/demo/actors');
+    expect(content).toContain('/api/v1/service-offerings');
 
-    const phase2 = compiled.querySelector<HTMLButtonElement>('[data-phase="phase2"]');
-    phase2?.click();
+    const phase2Button = compiled.querySelector<HTMLButtonElement>('[data-phase="phase2"]');
+    phase2Button?.click();
     fixture.detectChanges();
     content = compiled.textContent ?? '';
-    expect(phase2?.getAttribute('aria-pressed')).toBe('true');
-    expect(content).toContain('Runner dispatch workflow complete');
-
-    const phase3 = compiled.querySelector<HTMLButtonElement>('[data-phase="phase3"]');
-    phase3?.click();
-    fixture.detectChanges();
-    content = compiled.textContent ?? '';
-    expect(phase3?.getAttribute('aria-pressed')).toBe('true');
-    expect(content).toContain('Queue-task workflow complete');
-    expect(content).toContain('READY_FOR_HANDOFF');
-
-    const phase4 = compiled.querySelector<HTMLButtonElement>('[data-phase="phase4"]');
-    phase4?.click();
-    fixture.detectChanges();
-    content = compiled.textContent ?? '';
-    expect(phase4?.getAttribute('aria-pressed')).toBe('true');
-    expect(content).toContain('Proof-based terminal workflow complete');
-    expect(content).toContain('A proof establishes secret possession only');
-
-    const phase5 = compiled.querySelector<HTMLButtonElement>('[data-phase="phase5"]');
-    phase5?.click();
-    fixture.detectChanges();
-    content = compiled.textContent ?? '';
-    expect(phase5?.getAttribute('aria-pressed')).toBe('true');
-    expect(content).toContain('Authenticated ownership workflow complete');
-    expect(content).toContain('Keycloak and actor bindings are local fixtures');
+    expect(phase2Button?.getAttribute('aria-pressed')).toBe('true');
+    expect(content).toContain('Queue request API slice complete.');
+    expect(content).toContain('`/api/v1/queue-requests`');
 
     const next = compiled.querySelector<HTMLButtonElement>('[data-phase="next"]');
     next?.click();
     fixture.detectChanges();
     content = compiled.textContent ?? '';
     expect(next?.getAttribute('aria-pressed')).toBe('true');
-    expect(content).toContain('Define the next customer read model before adding channels');
-    expect(content).toContain('Planned direction, not completed implementation');
+    expect(content).toContain('Next engineering milestone.');
+    expect(content).toContain('No runner assignment');
+
     expect(meta.getTag("name='description'")?.content).toContain(
-      'private-sector pasuyo marketplace for permitted, transferable queues',
+      'Java backend for a private-sector pasuyo marketplace',
     );
     expect(meta.getTag("property='og:title'")?.content).toBe(
-      'Q-ify Phase 6 Backend Case Study | Julius Lapugot',
+      'Q-ify Backend Case Study | Julius Lapugot',
     );
   });
 });

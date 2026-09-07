@@ -10,11 +10,11 @@
 
   <main id="main-content">
     <header class="case-hero">
-      <p class="eyebrow">Synthetic implementation - Phase 6 complete</p>
+      <p class="eyebrow">Synthetic implementation - API slice complete</p>
       <h1>Q-ify: a marketplace for delegating time-consuming, transferable queues.</h1>
       <p class="lede">
         Q-ify explores how customers can delegate permitted private-sector queues to verified
-        runners, receive controlled progress updates, and arrive when a handoff is ready.
+        runners, receive controlled updates, and arrive for handoff when allowed.
       </p>
       <dl class="case-meta">
         <div>
@@ -23,11 +23,11 @@
         </div>
         <div>
           <dt>Target experience</dt>
-          <dd>Future mobile-first customer and runner applications</dd>
+          <dd>Service API consumers and product validation</dd>
         </div>
         <div>
           <dt>Status</dt>
-          <dd>Phase 6 complete - Not launched</dd>
+          <dd>API v1 slice complete - Not launched</dd>
         </div>
       </dl>
     </header>
@@ -44,16 +44,15 @@
 
     <section class="case-section" aria-labelledby="research-title">
       <p class="eyebrow">Research and evidence</p>
-      <h2 id="research-title">The behavior exists, but demand remains unproven.</h2>
+      <h2 id="research-title">Demand is still a hypothesis.</h2>
       <p>
         Public research found local queue-management products, paid assistance for online ticket
-        queues, and an informal Metro Manila offer to wait in physical lines. It did not establish
-        transaction volume or prove a viable Philippine marketplace for private-sector queue
-        assistance.
+        queues, and an informal Metro Manila offer to wait in physical lines. It did not prove a
+        stable, profitable private-sector market for a delegated queue marketplace.
       </p>
       <div class="evidence-note">
-        <strong>Evidence:</strong> phone-first access is credible in the Philippines, while
-        willingness to pay, repeat demand, and venue acceptance are still hypotheses.
+        <strong>Evidence:</strong> phone-first access remains strong, while willingness to pay,
+        repeat demand, and venue acceptance are still untested in this project.
       </div>
     </section>
 
@@ -62,8 +61,8 @@
       <h2 id="direction-title">Permitted private-sector queues and on-site errands.</h2>
       <p>
         The product vision is a B2C private-sector pasuyo marketplace for delegating time-consuming,
-        transferable queues and authorized on-site errands. It is not an unrestricted proxy service.
-        Venue and organizer rules determine whether a queue, handoff, or purchase is allowed.
+        transferable queues and authorized on-site errands. It is not a universal proxy or
+        unrestricted service.
       </p>
       <ul>
         <li>Limited food and retail product releases</li>
@@ -73,42 +72,29 @@
         <li>In-store availability checks and permitted on-site purchasing</li>
       </ul>
       <blockquote>
-        Q-ify does not bypass a line. Venue and organizer policy must permit the assistance and any
-        later handoff.
+        Venue and organizer rules must permit each queue, handoff, and possible purchase.
+        Concert-ticket and sneaker-release assistance remain only as policy-sensitive future
+        exploration.
       </blockquote>
     </section>
 
     <section class="case-section" aria-labelledby="vision-title">
-      <p class="eyebrow">Product vision</p>
-      <h2 id="vision-title">A controlled customer-runner workflow.</h2>
+      <p class="eyebrow">Product vision versus implemented scope</p>
+      <h2 id="vision-title">Vision is larger than this version.</h2>
       <p>
-        In the envisioned marketplace, a customer requests help only for an approved venue and
-        allowed queue type. A verified runner accepts the work, shares limited progress, and gives
-        the customer notice to arrive for a permitted handoff.
+        <strong>Vision:</strong> a delegated private-sector marketplace with runner execution,
+        completion handoff, payments, notifications, and risk controls.
+      </p>
+      <p><strong>Current scope:</strong> API v1 slice only.</p>
+      <p>
+        Q-ify implements catalog/identity/fulfillment boundaries and queue-request APIs for research
+        and backend proof. The marketplace is not launched, business demand is not yet validated,
+        and no operations are running in production.
       </p>
       <p class="hypothesis">
-        <strong>Product vision, not market proof:</strong> Q-ify has no launched marketplace, venue
-        partners, customers, transactions, or validated commercial demand.
+        <strong>Hiring manager lens:</strong> this is implemented backend evidence, not a finished
+        product.
       </p>
-    </section>
-
-    <section class="case-section" aria-labelledby="validation-title">
-      <p class="eyebrow">What must be validated</p>
-      <h2 id="validation-title">Demand, permission, safety, and economics remain open.</h2>
-      <ul>
-        <li>
-          Will enough customers pay a price that covers fair runner earnings, travel, support,
-          verification, and payments?
-        </li>
-        <li>
-          Will private venues and organizers give written permission for the intended handoffs?
-        </li>
-        <li>Can customers arrive reliably within a permitted handoff window?</li>
-        <li>
-          Can the service operate without creating safety, labor, privacy, anti-fixer, or
-          anti-scalping problems?
-        </li>
-      </ul>
     </section>
 
     <section class="case-section phase-progress" aria-labelledby="progress-title">
@@ -140,38 +126,6 @@
         </button>
         <button
           type="button"
-          data-phase="phase3"
-          [attr.aria-pressed]="selectedPhase === 'phase3'"
-          (click)="selectPhase('phase3')"
-        >
-          Phase 3
-        </button>
-        <button
-          type="button"
-          data-phase="phase4"
-          [attr.aria-pressed]="selectedPhase === 'phase4'"
-          (click)="selectPhase('phase4')"
-        >
-          Phase 4
-        </button>
-        <button
-          type="button"
-          data-phase="phase5"
-          [attr.aria-pressed]="selectedPhase === 'phase5'"
-          (click)="selectPhase('phase5')"
-        >
-          Phase 5
-        </button>
-        <button
-          type="button"
-          data-phase="phase6"
-          [attr.aria-pressed]="selectedPhase === 'phase6'"
-          (click)="selectPhase('phase6')"
-        >
-          Phase 6
-        </button>
-        <button
-          type="button"
           data-phase="next"
           [attr.aria-pressed]="selectedPhase === 'next'"
           (click)="selectPhase('next')"
@@ -183,187 +137,82 @@
       <div class="phase-panel" aria-live="polite">
         @switch (selectedPhase) {
           @case ('phase0') {
-            <h2 id="progress-title">Foundation complete.</h2>
+            <h2 id="progress-title">Foundation layer complete.</h2>
             <dl class="phase-detail">
               <dt>Outcome</dt>
               <dd>
-                Established a reproducible Java backend foundation before introducing business
-                behavior.
+                Java 21 and Spring Boot service shape with PostgreSQL schemas and seed data for
+                actor, catalog, and request domains.
               </dd>
               <dt>Decisions</dt>
               <dd>
-                Modular monolith, module-owned PostgreSQL data, and local AWS-compatible
-                infrastructure through Floci.
+                Separate modules for identity, catalog, and fulfillment, with Flyway-based migration
+                control and reproducible local test data.
               </dd>
-              <dt>Verified by</dt>
-              <dd>Flyway, Spring Modulith, Testcontainers, smoke verification, and CI.</dd>
-              <dt>Limits</dt>
-              <dd>No venue, booking, runner, or task behavior existed yet.</dd>
+              <dt>Verification</dt>
+              <dd>
+                Flyway migrations V1 through V5 and focused repository and persistence checks in
+                local integration tests.
+              </dd>
             </dl>
           }
           @case ('phase1') {
-            <h2 id="progress-title">Venue and booking workflow complete.</h2>
+            <h2 id="progress-title">Catalog and identity API baseline complete.</h2>
             <dl class="phase-detail">
               <dt>Outcome</dt>
               <dd>
-                A caller can browse approved venues, request queue assistance, retrieve the request,
-                and cancel it.
+                Public API now serves demo actors and approved active service offerings using
+                `/api/v1/demo/actors` and `/api/v1/service-offerings`.
               </dd>
               <dt>Decisions</dt>
               <dd>
-                Venue policy runs before persistence, and Bookings uses the exported Venues API.
+                Identity is synthetic and role-aware through the `X-Actor-Id` header. A current
+                actor is required and validated for each protected endpoint.
               </dd>
-              <dt>Verified by</dt>
-              <dd>Module, database, API, smoke, and CI verification.</dd>
-              <dt>Limits</dt>
+              <dt>Verification</dt>
               <dd>
-                No authentication, runner assignment, payments, frontend, or production traffic.
+                Schema seeding, role checks, and API behavior are locked in integration coverage.
               </dd>
             </dl>
           }
           @case ('phase2') {
-            <h2 id="progress-title">Runner dispatch workflow complete.</h2>
+            <h2 id="progress-title">Queue request API slice complete.</h2>
             <dl class="phase-detail">
               <dt>Outcome</dt>
               <dd>
-                A verified, available runner can discover an eligible request and atomically accept
-                it, assigning the booking and engaging the runner.
+                Implemented API calls: create a request, list requests, and get request detail at
+                `/api/v1/queue-requests`, plus request lifecycle status and immutable timeline rows.
               </dd>
               <dt>Decisions</dt>
               <dd>
-                Discovery stays pull-based and advisory. Acceptance locks the runner before the
-                booking and repeats eligibility checks inside one transaction.
+                Customers only may create and own request data. Ownership and actor role checks are
+                enforced before returning list or detail output.
               </dd>
-              <dt>Verified by</dt>
-              <dd>Module, API, integration, concurrency, smoke, and CI verification.</dd>
-              <dt>Limits</dt>
+              <dt>Verification</dt>
               <dd>
-                There is no queue-task execution, handoff, payments, frontend, or production
-                traffic.
-              </dd>
-            </dl>
-          }
-          @case ('phase3') {
-            <h2 id="progress-title">Queue-task workflow complete.</h2>
-            <dl class="phase-detail">
-              <dt>Outcome</dt>
-              <dd>
-                An assigned runner can start a task and move it in order from STARTED to CHECKED_IN,
-                QUEUEING, and READY_FOR_HANDOFF.
-              </dd>
-              <dt>Decisions</dt>
-              <dd>
-                The Tasks module depends only on Dispatch. Progress estimates are runner-declared,
-                append-only, and sequence ordered.
-              </dd>
-              <dt>Verified by</dt>
-              <dd>
-                Spring Modulith, Testcontainers integration tests, Docker Compose, CI, and Docker
-                image verification.
-              </dd>
-              <dt>Limits</dt>
-              <dd>
-                The APIs are unauthenticated demos. Handoff, completion, failure, and runner release
-                are not implemented.
-              </dd>
-            </dl>
-          }
-          @case ('phase4') {
-            <h2 id="progress-title">Proof-based terminal workflow complete.</h2>
-            <dl class="phase-detail">
-              <dt>Outcome</dt>
-              <dd>
-                A task ready for handoff can close with a valid customer-held completion proof or a
-                controlled operational failure. The related booking, assignment, and runner state
-                close together.
-              </dd>
-              <dt>Decisions</dt>
-              <dd>
-                The completion proof is returned only when a booking is created, while a verifier is
-                stored. The Tasks module coordinates terminal closure with one locking order across
-                the task, runner, booking, and assignment.
-              </dd>
-              <dt>Verified by</dt>
-              <dd>
-                Spring Modulith, Testcontainers integration and concurrency tests, Docker Compose,
-                CI, and Docker image verification.
-              </dd>
-              <dt>Limits</dt>
-              <dd>
-                A proof establishes secret possession only. It does not verify identity, physical
-                handoff, venue approval, or transfer.
-              </dd>
-            </dl>
-          }
-          @case ('phase5') {
-            <h2 id="progress-title">Authenticated ownership workflow complete.</h2>
-            <dl class="phase-detail">
-              <dt>Outcome</dt>
-              <dd>
-                Bound synthetic customers and runners can access only the booking and workflow
-                resources assigned to their actor type and reference.
-              </dd>
-              <dt>Decisions</dt>
-              <dd>
-                A stateless OAuth 2.0 JWT resource server validates configured token claims. The
-                Identity module maps an opaque issuer and subject to one active synthetic actor.
-              </dd>
-              <dt>Verified by</dt>
-              <dd>
-                Authentication and ownership API tests, Spring Modulith, Testcontainers, Docker
-                Compose smoke verification with local Keycloak, CI, and Docker image verification.
-              </dd>
-              <dt>Limits</dt>
-              <dd>
-                Keycloak and actor bindings are local fixtures. There is no account lifecycle, token
-                issuance, production identity configuration, rate limiting, or frontend.
-              </dd>
-            </dl>
-          }
-          @case ('phase6') {
-            <h2 id="progress-title">Durable customer notification feed complete.</h2>
-            <dl class="phase-detail">
-              <dt>Outcome</dt>
-              <dd>
-                Seven workflow milestones can appear in an authenticated customer's latest-50
-                notification feed after they are projected from the queue.
-              </dd>
-              <dt>Decisions</dt>
-              <dd>
-                A transactional event registry records a workflow event with its domain mutation.
-                The Notifications module publishes a versioned SQS message and deduplicates
-                projected events by source event ID.
-              </dd>
-              <dt>Verified by</dt>
-              <dd>
-                Event publication, projection, inbox, API, health, and failure-recovery tests;
-                Docker Compose smoke verification with local Keycloak and Floci; CI; and Docker
-                image verification.
-              </dd>
-              <dt>Limits</dt>
-              <dd>
-                The feed is eventually consistent and not authoritative task state. It has no read
-                state, pagination, deletion, outbound delivery, historical events, or production AWS
-                resources.
+                `QueueRequestCreationApiIntegrationTest`, `QueueRequestListApiIntegrationTest`, and
+                `QueueRequestDetailApiIntegrationTest` verify happy path, validation, and no-row
+                guarantees.
               </dd>
             </dl>
           }
           @case ('next') {
-            <h2 id="progress-title">Define the next customer read model before adding channels.</h2>
+            <h2 id="progress-title">Next engineering milestone.</h2>
             <dl class="phase-detail">
               <dt>Outcome</dt>
               <dd>
-                Define a customer task-detail read model and its privacy, ownership, and consistency
-                rules before adding outbound notification channels.
+                Add runner-dispatched progress, handoff completion, and a stronger read model for
+                customer status.
               </dd>
               <dt>Decisions</dt>
-              <dd>Planned direction, not completed implementation.</dd>
-              <dt>Verified by</dt>
-              <dd>Public claims will change only after implementation, tests, and CI pass.</dd>
+              <dd>
+                Public claims will only expand after new tests, migration evidence, and API checks
+                pass.
+              </dd>
               <dt>Limits</dt>
               <dd>
-                Email, SMS, mobile push, WebSockets, server-sent events, notification preferences,
-                pricing, payments, frontend applications, and deployment remain future exploration.
+                No runner assignment API flow, no handoff completion, no terminal workflow, no
+                payments, no notifications, no frontend, and no production account provisioning.
               </dd>
             </dl>
           }
@@ -373,91 +222,60 @@
 
     <section class="case-section" aria-labelledby="architecture-title">
       <p class="eyebrow">Architecture and engineering decisions</p>
-      <h2 id="architecture-title">One deployable, with boundaries that tests can enforce.</h2>
+      <h2 id="architecture-title">Package-by-feature boundaries with strict data ownership.</h2>
       <p>
-        Q-ify is a Java 21 and Spring Boot modular monolith with PostgreSQL and Flyway persistence.
-        Spring Modulith verifies the module graph: Identity and Venues have no module dependencies;
-        Bookings and Runners depend on Venues and Identity; Dispatch depends on Bookings, Runners,
-        and Identity; Tasks depends on Dispatch and Identity; and Notifications depends on Bookings,
-        Dispatch, Tasks, and Identity.
+        Q-ify is a Java backend monolith with distinct identity, catalog, and fulfillment packages.
+        Each module owns its tables and exposes its own application services, and endpoints are
+        shaped by module boundaries.
       </p>
       <p>
-        Each module owns its data and exposes application APIs across its boundary. Floci provides
-        local-only SQS compatibility. Q-ify uses the standard AWS SDK boundary, but creates no
-        production queues or cloud deployment.
+        The current module flow is straightforward: identity and catalog form reference data and
+        permissions, while fulfillment handles queue request creation and retrieval.
       </p>
       <p>
-        Identity maps an opaque OIDC issuer and subject to one typed synthetic actor reference. It
-        stores no profile data or credentials, and business services receive trusted scalar actor
-        references rather than reading JWT claims directly.
-      </p>
-      <p>
-        Workflow modules publish immutable events without depending on Notifications or AWS SDK
-        types. Notifications owns the versioned SQS contract, projection inbox, customer feed,
-        publication recovery, and SQS health checks.
+        Lifecycle states remain defined as REQUESTED through completed terminal states, and request
+        timeline entries are persisted for audit continuity.
       </p>
     </section>
 
-    <section class="case-section" aria-labelledby="concurrency-title">
-      <p class="eyebrow">Concurrency and transactions</p>
-      <h2 id="concurrency-title">One competing terminal outcome must win.</h2>
+    <section class="case-section" aria-labelledby="evidence-title">
+      <p class="eyebrow">Verification evidence</p>
+      <h2 id="evidence-title">Proof first, then claims.</h2>
       <p>
-        Opportunity discovery is advisory and does not reserve work. Acceptance locks the runner
-        before the booking and repeats eligibility checks in one transaction, preventing the same
-        runner or booking from being assigned twice under concurrent requests.
+        Queue request behavior is demonstrated by API tests and database assertions, not by
+        screenshots. Tests confirm field shapes, stable ordering, validation failures, and that
+        writes do not happen on forbidden requests.
       </p>
       <p>
-        Phase 4 serializes competing completion and failure requests so one terminal outcome wins.
-        If releasing the runner fails, the terminal changes roll back together. Progress estimates
-        remain runner-declared, append-only records; they do not claim real-time location, venue, or
-        customer verification.
-      </p>
-      <p>
-        Phase 5 removes caller-supplied ownership from workflow access. Wrong actor types are
-        rejected, and cross-owner resources are not disclosed as accessible.
-      </p>
-      <p>
-        Phase 6 records each workflow event with its committed domain mutation, then projects SQS
-        delivery asynchronously. Event-ID deduplication makes repeated delivery safe, while late
-        valid events remain visible using their original business time.
+        Data shape is supported by migration files from V1 through V5, which define identity,
+        catalog, and queue request tables plus seeded demo values.
       </p>
     </section>
 
     <section class="case-section" aria-labelledby="limits-title">
-      <p class="eyebrow">Honest limitations</p>
-      <h2 id="limits-title">A backend demonstration, not an operating marketplace.</h2>
+      <p class="eyebrow">Current limits and honesty checks</p>
+      <h2 id="limits-title">This is a synthetic backend, not an operating marketplace.</h2>
       <p>
-        Q-ify is a synthetic portfolio implementation. It has no user-facing Q-ify application, real
-        users or production accounts, payments, outbound notifications, production deployment, real
-        AWS verification, venue operations, or commercial transactions.
+        There is no frontend application. There is no runner assignment, no delivery or task
+        execution, no payment flow, no production identity provisioning, and no live deployment
+        claim.
       </p>
       <p>
-        The current completion proof demonstrates secret possession only. It does not establish a
-        customer's identity, physical handoff, venue approval, or a transferable entitlement.
-        Authentication narrows API access, but it does not establish those real-world conditions or
-        make this synthetic implementation production-ready.
+        It is a backend demonstration for portfolio evidence, and product scope remains unvalidated.
       </p>
       <p>
-        The notification feed is eventually consistent and limited to local SQS-compatible testing.
-        It is not real-time messaging or authoritative workflow state, and it has no read state,
-        delivery preference, or historical backfill.
-      </p>
-      <p>
-        Concert-ticket and sneaker-release assistance are only future, policy-sensitive
-        possibilities. Q-ify does not claim to bypass ticket limits, named accounts, venue rules, or
-        anti-scalping protections. Government, immigration, school, bank, medical, biometric, and
-        impersonation scenarios are outside this direction.
+        Government, immigration, school enrollment, banking, medical, biometrics, impersonation, and
+        similar policy-sensitive workflows are not part of current implementation.
       </p>
     </section>
 
     <section class="case-section" aria-labelledby="process-title">
       <p class="eyebrow">AI-assisted engineering workflow</p>
-      <h2 id="process-title">Direction stays human-owned and evidence-based.</h2>
+      <h2 id="process-title">Scope and accountability stay human owned.</h2>
       <p>
-        I define the product scope, architecture, constraints, acceptance criteria, and delivery
-        sequence. Coding agents assist with scoped implementation and pre-commit review. I verify
-        each accepted change locally and in CI, and remain accountable for the final design, code,
-        tests, documentation, and technical decisions.
+        I define the product scope, architecture boundaries, constraints, acceptance criteria, and
+        delivery order. Coding agents support scoped implementation and review. I keep final
+        accountability for design, code, tests, and technical decisions.
       </p>
       <p>
         <a href="https://github.com/builtbyjuls/q-ify">View Q-ify on GitHub</a>
@@ -468,8 +286,8 @@
       <p class="eyebrow">Research notes</p>
       <h2 id="sources-title">Sources behind the early direction.</h2>
       <p>
-        The public scan was conducted on September 1, 2026. It supports the problem framing, not
-        proof of demand, market size, or completed transactions.
+        The public scan supports problem framing and context, not proof of demand, market size, or
+        production readiness.
       </p>
       <ul>
         <li>
