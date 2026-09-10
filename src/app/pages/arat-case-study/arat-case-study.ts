@@ -3,39 +3,42 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 
-type QifyPhase = 'phase0' | 'phase1' | 'phase2' | 'next';
+type AratStep = 'plan' | 'quote' | 'agree' | 'change';
 
 @Component({
-  selector: 'app-qify-case-study',
+  selector: 'app-arat-case-study',
   imports: [RouterLink],
-  templateUrl: './qify-case-study.html',
-  styleUrl: './qify-case-study.scss',
+  templateUrl: './arat-case-study.html',
+  styleUrl: './arat-case-study.scss',
 })
-export class QifyCaseStudy implements OnInit {
+export class AratCaseStudy implements OnInit {
   private readonly meta = inject(Meta);
   private readonly document = inject(DOCUMENT);
 
-  selectedPhase: QifyPhase = 'phase2';
+  selectedStep: AratStep = 'change';
 
-  selectPhase(phase: QifyPhase): void {
-    this.selectedPhase = phase;
+  selectStep(step: AratStep): void {
+    this.selectedStep = step;
   }
 
   ngOnInit(): void {
     const description =
-      'Q-ify is an unlaunched synthetic Java backend for a private-sector pasuyo marketplace. It currently implements an API-only version 1 slice for service offerings and queue requests.';
+      'Arat? is a concept-stage planning product designed to help groups compare structured resort and vehicle offers and detect when changes invalidate an agreement.';
 
     this.meta.updateTag({ name: 'description', content: description });
     this.meta.updateTag({
       property: 'og:title',
-      content: 'Q-ify Backend Case Study | Julius Lapugot',
+      content: 'Arat? Product Case Study | Julius Lapugot',
     });
     this.meta.updateTag({ property: 'og:description', content: description });
-    this.meta.updateTag({ property: 'og:url', content: 'https://builtbyjuls.com/projects/q-ify' });
+    this.meta.updateTag({
+      property: 'og:url',
+      content: 'https://builtbyjuls.com/projects/arat',
+    });
     this.meta.updateTag({ name: 'twitter:card', content: 'summary' });
     this.meta.updateTag({
       name: 'twitter:title',
-      content: 'Q-ify Backend Case Study | Julius Lapugot',
+      content: 'Arat? Product Case Study | Julius Lapugot',
     });
     this.meta.updateTag({ name: 'twitter:description', content: description });
     this.meta.removeTag("property='og:image'");
@@ -44,7 +47,7 @@ export class QifyCaseStudy implements OnInit {
     this.meta.removeTag("property='og:image:alt'");
     this.meta.removeTag("name='twitter:image'");
     this.meta.removeTag("name='twitter:image:alt'");
-    this.setCanonicalUrl('https://builtbyjuls.com/projects/q-ify');
+    this.setCanonicalUrl('https://builtbyjuls.com/projects/arat');
   }
 
   private setCanonicalUrl(url: string): void {
