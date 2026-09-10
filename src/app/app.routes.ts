@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
-import { QifyCaseStudy } from './pages/qify-case-study/qify-case-study';
+import { AratCaseStudy } from './pages/arat-case-study/arat-case-study';
 
 export const routes: Routes = [
   {
@@ -9,9 +9,19 @@ export const routes: Routes = [
     title: 'Julius Lapugot | Senior Java Software Engineer',
   },
   {
+    path: 'projects/arat',
+    component: AratCaseStudy,
+    title: 'Arat? Product Case Study | Julius Lapugot',
+  },
+  {
+    path: 'projects/ano-tara',
+    redirectTo: '/projects/arat',
+    pathMatch: 'full',
+  },
+  {
     path: 'projects/q-ify',
-    component: QifyCaseStudy,
-    title: 'Q-ify Backend Case Study | Julius Lapugot',
+    redirectTo: '/projects/arat',
+    pathMatch: 'full',
   },
   {
     path: '**',
