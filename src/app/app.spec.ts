@@ -83,6 +83,9 @@ describe('App', () => {
     expect(content).toContain('Ten friends, one plan, and two withdrawals');
     expect(content).toContain('Useful before any supplier joins');
     expect(content).toContain('No supplier can discover the plan');
+    expect(content).toContain('Open to offers');
+    expect(content).toContain('staycation or other short-term rental');
+    expect(content).toContain('property, building, platform, or local rules');
     expect(content).toContain('international holiday');
     expect(content).toContain('Agreement is not a reservation');
     expect(content).toContain('No users, reservations, revenue, partnerships');
