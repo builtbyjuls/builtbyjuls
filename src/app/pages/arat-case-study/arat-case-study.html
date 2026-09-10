@@ -10,11 +10,12 @@
 
   <main id="main-content">
     <header class="case-hero">
-      <p class="eyebrow">Product concept - Discovery and architecture</p>
+      <p class="eyebrow">Product concept - Group planning first</p>
       <h1>Arat?: plan together before anyone commits.</h1>
       <p class="lede">
-        Arat? is designed to help groups agree on an outing, collect structured offers from private
-        resorts and vehicle providers, and resolve changes before anyone treats the plan as final.
+        Arat? is designed for any group plan, from a simple gala to international travel. Groups can
+        coordinate privately and, only if they choose, invite suppliers or publish an approved brief
+        to receive offers.
       </p>
       <dl class="case-meta">
         <div>
@@ -23,7 +24,7 @@
         </div>
         <div>
           <dt>Initial focus</dt>
-          <dd>Private resort outings with optional van transport</dd>
+          <dd>Private group planning with optional supplier sourcing</dd>
         </div>
         <div>
           <dt>Status</dt>
@@ -41,8 +42,34 @@
         participants approved different dates, prices, or assumptions.
       </p>
       <p>
-        When one person withdraws or one supplier changes a condition, the organizer must work out
-        who is affected and whether the original agreement still holds.
+        When attendance, dates, costs, options, or supplier conditions change, the organizer must
+        work out who is affected and whether the original agreement still holds.
+      </p>
+    </section>
+
+    <section class="case-section" aria-labelledby="model-title">
+      <p class="eyebrow">Core product model</p>
+      <h2 id="model-title">Useful before any supplier joins.</h2>
+      <p>
+        A group can use Arat? only to coordinate itself. Friends planning a gala, reunion, road
+        trip, or international holiday can compare dates, budgets, requirements, and itinerary
+        options, approve one version, then make every booking outside the platform.
+      </p>
+      <p>
+        Supplier participation is an optional branch controlled by the group. The planning room and
+        private participant information never become a public listing.
+      </p>
+      <dl class="story-detail">
+        <dt>Private</dt>
+        <dd>No supplier can discover the plan.</dd>
+        <dt>Invite-only</dt>
+        <dd>The organizer shares an approved brief with selected suppliers or rental providers.</dd>
+        <dt>Discoverable</dt>
+        <dd>Eligible providers may view the approved brief and submit structured offers.</dd>
+      </dl>
+      <p class="hypothesis">
+        <strong>Privacy rule:</strong> suppliers see only what the group approves for sharing, never
+        individual budget limits, private comments, rejected dates, or internal voting history.
       </p>
     </section>
 
@@ -80,11 +107,11 @@
         </button>
         <button
           type="button"
-          data-step="quote"
-          [attr.aria-pressed]="selectedStep === 'quote'"
-          (click)="selectStep('quote')"
+          data-step="compare"
+          [attr.aria-pressed]="selectedStep === 'compare'"
+          (click)="selectStep('compare')"
         >
-          Quote
+          Compare
         </button>
         <button
           type="button"
@@ -96,11 +123,11 @@
         </button>
         <button
           type="button"
-          data-step="change"
-          [attr.aria-pressed]="selectedStep === 'change'"
-          (click)="selectStep('change')"
+          data-step="adapt"
+          [attr.aria-pressed]="selectedStep === 'adapt'"
+          (click)="selectStep('adapt')"
         >
-          Change
+          Adapt
         </button>
       </div>
 
@@ -124,19 +151,18 @@
               </dd>
             </dl>
           }
-          @case ('quote') {
-            <h2 id="flow-title">Collect offers that can be compared.</h2>
+          @case ('compare') {
+            <h2 id="flow-title">Compare plans, with or without suppliers.</h2>
             <dl class="story-detail">
-              <dt>Supplier input</dt>
+              <dt>Options</dt>
               <dd>
-                Resorts provide capacity, inclusions, deposits, cancellation terms, and quote
-                expiry. Vehicle providers add route, capacity, fuel, toll, parking, and overtime
-                conditions.
+                The group can compare its own itineraries, organizer-recorded prices, external
+                links, or offers submitted through Arat?.
               </dd>
-              <dt>Access</dt>
+              <dt>Optional sourcing</dt>
               <dd>
-                A simple invitation link lets a supplier respond without adopting a full management
-                system.
+                If the group opts in, invited or eligible providers can respond to an approved brief
+                without seeing the private planning room.
               </dd>
               <dt>Unknowns</dt>
               <dd>
@@ -163,11 +189,11 @@
               </dd>
             </dl>
           }
-          @case ('change') {
+          @case ('adapt') {
             <h2 id="flow-title">Show what changed and what it breaks.</h2>
             <dl class="story-detail">
               <dt>Trigger</dt>
-              <dd>Attendance, price, availability, inclusions, or supplier conditions change.</dd>
+              <dd>Attendance, dates, price, availability, inclusions, or conditions change.</dd>
               <dt>Check</dt>
               <dd>
                 Arat? would recalculate the plan and identify approvals or requirements that are no
@@ -175,8 +201,8 @@
               </dd>
               <dt>Resolution</dt>
               <dd>
-                Revise an offer, compare another option, invite participants, or request explicit
-                approval for the new plan.
+                Revise the plan, compare another option, invite participants, request a new offer,
+                or ask for explicit approval of the changed version.
               </dd>
             </dl>
           }
@@ -205,21 +231,21 @@
 
     <section class="case-section" aria-labelledby="scope-title">
       <p class="eyebrow">Focused first version</p>
-      <h2 id="scope-title">One outing, two supplier types, one shared decision.</h2>
+      <h2 id="scope-title">Prove private planning before marketplace growth.</h2>
       <p>
-        The first version would focus on private resort outings with optional van transport. It
-        would include a planning room, supplier quote form, comparison view, conditional approval,
-        quote expiry, cost recalculation, confirmation tracking, and an audit history.
+        The first version would include private planning rooms, participant invitations, date
+        availability, requirements and preferences, private budget limits, proposed plan versions,
+        cost calculation, participant approval, change detection, and an audit history.
       </p>
       <p>
-        Organizers could also record an offer received outside Arat?, with its source clearly
-        labeled and supplier confirmation still required. This keeps group planning useful before
-        supplier adoption is proven.
+        The first vertical slice would create a plan, approve a fixed-cost version, remove one
+        participant, and show why the earlier agreement is no longer valid. Supplier invitations,
+        structured offers, and discoverable briefs would follow as a separate slice.
       </p>
       <div class="evidence-note">
-        <strong>Excluded from the first version:</strong> payment collection, automatic booking,
-        public reviews, broad travel search, real-time vehicle tracking, and large travel-platform
-        integrations.
+        <strong>Excluded from the first version:</strong> supplier accounts, public request
+        discovery, payment collection, automatic booking, public reviews, broad travel search, and
+        real-time vehicle tracking.
       </div>
     </section>
 
@@ -228,42 +254,45 @@
       <h2 id="architecture-title">Version the agreement, not just the record.</h2>
       <p>
         The proposed implementation is an Angular experience backed by a Java 21 and Spring Boot
-        modular monolith. PostgreSQL would hold planning rooms, participant constraints, supplier
-        offers, plan versions, approvals, confirmations, and audit events.
+        modular monolith. PostgreSQL would hold planning rooms, participant constraints, plan
+        versions, approvals, change impacts, and audit events.
       </p>
       <p>
-        Planning, suppliers, offers, agreements, and confirmations would have explicit boundaries. A
-        participant or supplier change would run a transactional recalculation against the approved
-        plan version. Version checks would prevent a person from approving stale terms.
+        Identity and planning would form the first module boundaries, with agreements initially kept
+        inside planning unless separation becomes useful. A material change would run a
+        transactional recalculation against the approved plan version. Version checks would prevent
+        approval of stale terms.
       </p>
       <p>
-        Background notifications can be added after the core workflow is proven. RabbitMQ should
-        enter the architecture only when asynchronous delivery has a demonstrated need.
+        Supplier sourcing, confirmations, and notifications would be added only after private group
+        planning works. RabbitMQ should enter the architecture only when asynchronous delivery has a
+        demonstrated need.
       </p>
     </section>
 
     <section class="case-section" aria-labelledby="validation-title">
-      <p class="eyebrow">Validation before marketplace growth</p>
+      <p class="eyebrow">Validation before expansion</p>
       <h2 id="validation-title">The workflow is plausible. Demand is still a hypothesis.</h2>
       <p>
-        Research must test whether organizers will share structured plans, whether participants will
-        set honest constraints, and whether resort and van operators find these inquiries more
-        useful than a simple price question.
+        Research must first test whether organizers want structured participant input, whether
+        people will provide private constraints, and whether groups understand versioned approval
+        and change alerts.
       </p>
       <p>
-        Supplier willingness to respond or pay, viable booking operations, cancellation handling,
-        and customer acquisition are unvalidated. No users, reservations, revenue, partnerships, or
-        production readiness are being claimed.
+        Supplier participation is a separate hypothesis: providers may value complete, structured
+        inquiries more than a simple price question, but their willingness to respond or pay is
+        unvalidated. No users, reservations, revenue, partnerships, or production readiness are
+        being claimed.
       </p>
     </section>
 
     <section class="case-section" aria-labelledby="future-title">
       <p class="eyebrow">Future exploration</p>
-      <h2 id="future-title">Broaden only after change detection proves useful.</h2>
+      <h2 id="future-title">Add sourcing only after group planning proves useful.</h2>
       <p>
-        Later work could explore supplier-managed availability, reservation holds, payments,
-        notifications, caterers, and activity operators. Those additions should follow evidence that
-        groups value the agreement and change-resolution workflow.
+        Later work could add invited supplier offers, group-approved discoverable briefs, provider
+        profiles, supplier-managed availability, reservation holds, payments, notifications,
+        caterers, and activity operators.
       </p>
       <p>
         Arat? is currently a product and architecture concept. There is no application, public API,

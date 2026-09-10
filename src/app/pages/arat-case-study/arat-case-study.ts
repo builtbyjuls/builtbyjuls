@@ -3,7 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 
-type AratStep = 'plan' | 'quote' | 'agree' | 'change';
+type AratStep = 'plan' | 'compare' | 'agree' | 'adapt';
 
 @Component({
   selector: 'app-arat-case-study',
@@ -15,7 +15,7 @@ export class AratCaseStudy implements OnInit {
   private readonly meta = inject(Meta);
   private readonly document = inject(DOCUMENT);
 
-  selectedStep: AratStep = 'change';
+  selectedStep: AratStep = 'adapt';
 
   selectStep(step: AratStep): void {
     this.selectedStep = step;
@@ -23,7 +23,7 @@ export class AratCaseStudy implements OnInit {
 
   ngOnInit(): void {
     const description =
-      'Arat? is a concept-stage planning product designed to help groups compare structured resort and vehicle offers and detect when changes invalidate an agreement.';
+      'Arat? is a concept-stage workspace for private group planning, versioned agreement, and change detection, with optional supplier and rental offers.';
 
     this.meta.updateTag({ name: 'description', content: description });
     this.meta.updateTag({
