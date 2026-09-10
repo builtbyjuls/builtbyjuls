@@ -27,11 +27,9 @@ describe('App', () => {
 
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('h1')?.textContent).toContain('reliable Java systems');
-    expect(compiled.textContent).toContain('Product concept - Discovery and architecture');
+    expect(compiled.textContent).toContain('Product concept - Group planning first');
     expect(compiled.textContent).toContain('Arat?');
-    expect(compiled.textContent).toContain(
-      'designed to detect when a change breaks an agreed plan',
-    );
+    expect(compiled.textContent).toContain('supplier and rental offers are optional');
   });
 
   it('should offer the condensed one-page resume from every resume link', async () => {
@@ -83,14 +81,17 @@ describe('App', () => {
     let content = compiled.textContent ?? '';
     expect(content).toContain('Concept stage - Not implemented');
     expect(content).toContain('Ten friends, one plan, and two withdrawals');
+    expect(content).toContain('Useful before any supplier joins');
+    expect(content).toContain('No supplier can discover the plan');
+    expect(content).toContain('international holiday');
     expect(content).toContain('Agreement is not a reservation');
     expect(content).toContain('No users, reservations, revenue, partnerships');
     expect(content).toContain('AI-assisted product workflow');
     expect(content).toContain('I remain accountable for the final product decisions');
     expect(content).not.toContain('Q-ify');
 
-    const change = compiled.querySelector<HTMLButtonElement>('[data-step="change"]');
-    expect(change?.getAttribute('aria-pressed')).toBe('true');
+    const adapt = compiled.querySelector<HTMLButtonElement>('[data-step="adapt"]');
+    expect(adapt?.getAttribute('aria-pressed')).toBe('true');
     expect(content).toContain('Show what changed and what it breaks');
 
     const plan = compiled.querySelector<HTMLButtonElement>('[data-step="plan"]');
@@ -101,12 +102,12 @@ describe('App', () => {
     expect(content).toContain('Start with what the group can accept');
     expect(content).toContain('Individual budget limits stay private by default');
 
-    const quote = compiled.querySelector<HTMLButtonElement>('[data-step="quote"]');
-    quote?.click();
+    const compare = compiled.querySelector<HTMLButtonElement>('[data-step="compare"]');
+    compare?.click();
     fixture.detectChanges();
     content = compiled.textContent ?? '';
-    expect(quote?.getAttribute('aria-pressed')).toBe('true');
-    expect(content).toContain('Collect offers that can be compared');
+    expect(compare?.getAttribute('aria-pressed')).toBe('true');
+    expect(content).toContain('Compare plans, with or without suppliers');
     expect(content).toContain('Unresolved costs are marked as needing clarification');
 
     const agree = compiled.querySelector<HTMLButtonElement>('[data-step="agree"]');
@@ -117,7 +118,7 @@ describe('App', () => {
     expect(content).toContain('Approve one version of the plan');
     expect(content).toContain('Group approval does not mean that suppliers confirmed');
 
-    expect(meta.getTag("name='description'")?.content).toContain('concept-stage planning product');
+    expect(meta.getTag("name='description'")?.content).toContain('private group planning');
     expect(meta.getTag("property='og:title'")?.content).toBe(
       'Arat? Product Case Study | Julius Lapugot',
     );
