@@ -36,7 +36,7 @@ describe('App', () => {
     expect(compiled.textContent).toContain('Senior Java Software Engineer');
   });
 
-  it('should render both engineering showcases and interact with inspection tabs', async () => {
+  it('should render engineering showcases in carousel, default to first tabs, and support switching', async () => {
     const fixture = TestBed.createComponent(App);
     const router = TestBed.inject(Router);
     await router.navigateByUrl('/');
@@ -47,25 +47,30 @@ describe('App', () => {
     expect(compiled.textContent).toContain('Spring AI Hibernate N+1 Test Gate');
     expect(compiled.textContent).toContain('Simplifeyn: Physical Code Explainer');
 
-    // Test N+1 Tab switching: click Problem tab
-    const problemBtn = Array.from(compiled.querySelectorAll<HTMLButtonElement>('.tab-btn')).find(
-      (b) => b.textContent?.includes('Problem'),
-    );
-    expect(problemBtn).toBeTruthy();
-    problemBtn?.click();
-    fixture.detectChanges();
+    // Verify N+1 defaults to Problem tab (Step 1)
     expect(compiled.textContent).toContain('shouldFetchParticipantSettlements');
 
-    // Test Simplifeyn Rung switching: click Vibe Coder tab
-    const vibeBtn = Array.from(compiled.querySelectorAll<HTMLButtonElement>('.tab-btn')).find((b) =>
-      b.textContent?.includes('Vibe Coder'),
+    // Switch N+1 Tab to Fix
+    const fixBtn = Array.from(compiled.querySelectorAll<HTMLButtonElement>('.tab-btn')).find((b) =>
+      b.textContent?.includes('Spring AI Structured Fix'),
     );
-    expect(vibeBtn).toBeTruthy();
-    vibeBtn?.click();
+    expect(fixBtn).toBeTruthy();
+    fixBtn?.click();
     fixture.detectChanges();
+    expect(compiled.textContent).toContain('Remediation: Fetch relationships');
+
+    // Verify carousel controls exist
+    const nextBtn = Array.from(compiled.querySelectorAll<HTMLButtonElement>('.carousel-btn')).find(
+      (b) => b.textContent?.includes('Next'),
+    );
+    expect(nextBtn).toBeTruthy();
+    nextBtn?.click();
+    fixture.detectChanges();
+
+    // Verify Simplifeyn defaults to Vibe Coder rung (Step 1)
     expect(compiled.textContent).toContain('In Plain English');
 
-    // Test Simplifeyn Rung switching: click Senior Dev tab
+    // Switch Simplifeyn Rung to Senior Dev
     const seniorBtn = Array.from(compiled.querySelectorAll<HTMLButtonElement>('.tab-btn')).find(
       (b) => b.textContent?.includes('Senior Dev'),
     );
@@ -73,6 +78,15 @@ describe('App', () => {
     seniorBtn?.click();
     fixture.detectChanges();
     expect(compiled.textContent).toContain('Concurrency & Invariants');
+
+    // Switch back using Prev button
+    const prevBtn = Array.from(compiled.querySelectorAll<HTMLButtonElement>('.carousel-btn')).find(
+      (b) => b.textContent?.includes('Prev'),
+    );
+    expect(prevBtn).toBeTruthy();
+    prevBtn?.click();
+    fixture.detectChanges();
+    expect(compiled.querySelector('.carousel-counter')?.textContent).toContain('Project 01 / 02');
   });
 
   it('should offer the condensed one-page resume from every resume link', async () => {

@@ -34,8 +34,10 @@ export class Home implements OnInit {
   ];
 
   protected readonly activeSection = signal<string>('showcase');
-  protected readonly selectedNplusTab = signal<'problem' | 'explain' | 'fix'>('fix');
-  protected readonly selectedFeynmanRung = signal<'vibe' | 'junior' | 'senior'>('senior');
+  protected readonly currentShowcaseIndex = signal<number>(0);
+  protected readonly totalShowcases = 2;
+  protected readonly selectedNplusTab = signal<'problem' | 'explain' | 'fix'>('problem');
+  protected readonly selectedFeynmanRung = signal<'vibe' | 'junior' | 'senior'>('vibe');
   protected readonly copiedKey = signal<string | null>(null);
 
   constructor() {
@@ -82,6 +84,18 @@ export class Home implements OnInit {
 
   protected selectFeynmanRung(rung: 'vibe' | 'junior' | 'senior'): void {
     this.selectedFeynmanRung.set(rung);
+  }
+
+  protected nextShowcase(): void {
+    this.currentShowcaseIndex.update((i) => (i + 1) % this.totalShowcases);
+  }
+
+  protected prevShowcase(): void {
+    this.currentShowcaseIndex.update((i) => (i - 1 + this.totalShowcases) % this.totalShowcases);
+  }
+
+  protected goToShowcase(index: number): void {
+    this.currentShowcaseIndex.set(index);
   }
 
   protected copyCommand(text: string, key: string): void {
