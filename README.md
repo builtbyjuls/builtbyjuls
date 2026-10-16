@@ -1,59 +1,83 @@
-# Builtbyjuls
+# Julius Cessar Lapugot
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.27.
+**Senior Java Software Engineer** | High-Throughput Distributed Systems & Enterprise Architecture
 
-## Development server
+[builtbyjuls.com](https://builtbyjuls.com) | [LinkedIn](https://www.linkedin.com/in/jlapugot) | [Resume](https://builtbyjuls.com/resume/jlapugot_resume.pdf) | [Email](mailto:juliusclapugot@gmail.com)
 
-To start a local development server, run:
+---
+
+## Technical Identity
+
+Senior Java Software Engineer with 9+ years of experience delivering high-throughput enterprise platforms across energy market, banking, and HR domains. Specialized in Java (8/11/17/21), Spring Boot microservices, PostgreSQL query optimization, distributed messaging (RabbitMQ), and resilient automated test gates.
+
+- **50-90% Latency Reduction**: Redesigned PostgreSQL schema, query rewrites, and composite indexing for multi-tenant energy platforms.
+- **90% Ingestion Latency Cut**: Optimized time-series pipeline via JDBC batching and parallel validation with 100% data integrity.
+- **99.9% Production API Uptime**: Sustained high-availability customer-bank messaging services for hundreds of market participants.
+- **20% to 80% Test Coverage**: Elevated automated test suites across trade-finance banking modules using JUnit, Mockito, and Testcontainers.
+
+---
+
+## Featured Engineering Projects
+
+### 1. [`nplus1-ai-gate-starter`](https://github.com/builtbyjuls/nplus1-ai-gate-starter)
+
+**JUnit 5 Test Gate for Hibernate N+1 Query Loops & AI-Driven Remediation**
+
+- Catches accidental N+1 query cascades in automated test suites via datasource-proxy query interceptors.
+- Executes isolated PostgreSQL `EXPLAIN (FORMAT JSON)` query plans inside rollback-safe JDBC savepoints.
+- Generates compile-ready Java remediation suggestions using Spring AI and Redis caching.
+- **Stack**: Java 21, Spring Boot, Spring AI, PostgreSQL, Testcontainers, Redis 7.
+
+### 2. [`simplifeyn`](https://github.com/builtbyjuls/simplifeyn)
+
+**Richard Feynman Technique PR Reviewer & Agent Skill**
+
+- PR code reviewer and Agent Skill that explains complex architectural pull requests using the Richard Feynman mental model.
+- Structures explanations through physical causality, tangible everyday analogies, audience calibration ladders, and edge-case ice-water tests.
+- Available as a GitHub Action and portable AI skill.
+
+---
+
+## Core Competencies
+
+| Domain                        | Technologies & Practices                                                         |
+| :---------------------------- | :------------------------------------------------------------------------------- |
+| **Languages & Core**          | Java (8, 11, 17, 21), SQL, TypeScript                                            |
+| **Frameworks & Architecture** | Spring Boot, Spring Data JPA, Hibernate, REST APIs, Microservices, System Design |
+| **Databases & Messaging**     | PostgreSQL, MariaDB, SQL Server, Redis, RabbitMQ, JDBC Batching                  |
+| **Testing & Quality**         | JUnit 5, Mockito, Testcontainers, Integration Testing, Vitest                    |
+| **DevOps & Cloud**            | Docker, Kubernetes, AWS (ECS, RDS, S3, SQS), Linux, CI/CD, Maven, Gradle         |
+
+---
+
+## Career Summary
+
+- **Senior Java Software Engineer** - Exist Software Labs, Inc. (Jan 2020 - Oct 2025)
+- **Software Engineer** - Exist Software Labs, Inc. (Apr 2016 - Dec 2019)
+- **Education**: Bachelor of Science in Information Technology - Pamantasan ng Lungsod ng Valenzuela (2016)
+
+---
+
+## About This Repository (`builtbyjuls`)
+
+This repository is both the GitHub Profile repository for `@builtbyjuls` and the source code for the personal portfolio at [builtbyjuls.com](https://builtbyjuls.com).
+
+- **Framework**: Angular 21 with zoneless change detection and SSR/prerendering (`@angular/ssr`)
+- **Styling**: Pure SCSS with high-contrast typography, responsive layout, and zero heavy UI libraries
+- **Deployment**: Cloudflare Workers serving static prerendered assets with SPA fallback
+
+### Local Development
 
 ```bash
-ng serve
+npm ci
+npm start
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+The local server runs at `http://localhost:4200`.
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Checks & Verification
 
 ```bash
-ng generate component component-name
+npm run check
+npm run format:check
 ```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
