@@ -1,5 +1,13 @@
 import { DOCUMENT } from '@angular/common';
-import { afterNextRender, Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import {
+  afterNextRender,
+  ChangeDetectorRef,
+  Component,
+  DestroyRef,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 
@@ -13,6 +21,7 @@ export class Home implements OnInit {
   private readonly meta = inject(Meta);
   private readonly document = inject(DOCUMENT);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly cdr = inject(ChangeDetectorRef);
 
   protected readonly navSections = [
     { id: 'showcase', num: '01', label: 'Showcase' },
@@ -95,40 +104,67 @@ export class Home implements OnInit {
       if (typeof window !== 'undefined' && window.history) {
         window.history.pushState(null, '', `#${id}`);
       }
-      this.activeSection.set(id);
+      this.setActiveSection(id);
     }
   }
 
   private initScrollSpy(): void {
-    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
+    if (typeof window === 'undefined') {
       return;
     }
 
-    const sectionElements = this.navSections
-      .map((s) => this.document.getElementById(s.id))
-      .filter((el): el is HTMLElement => el !== null);
+    const updateActive = () => {
+      const scrollY = window.scrollY || window.pageYOffset;
+      const windowHeight = window.innerHeight;
+      const docHeight = this.document.documentElement.scrollHeight;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            this.activeSection.set(entry.target.id);
+      if (scrollY + windowHeight >= docHeight - 80) {
+        this.setActiveSection('contact');
+        return;
+      }
+
+      const focalPoint = windowHeight * 0.35;
+      let currentSectionId = this.navSections[0].id;
+
+      for (const section of this.navSections) {
+        const el = this.document.getElementById(section.id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= focalPoint) {
+            currentSectionId = section.id;
           }
         }
-      },
-      {
-        rootMargin: '-15% 0px -65% 0px',
-        threshold: 0,
-      },
-    );
+      }
 
-    for (const el of sectionElements) {
-      observer.observe(el);
-    }
+      this.setActiveSection(currentSectionId);
+    };
+
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateActive();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    updateActive();
 
     this.destroyRef.onDestroy(() => {
-      observer.disconnect();
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
     });
+  }
+
+  private setActiveSection(id: string): void {
+    if (this.activeSection() !== id) {
+      this.activeSection.set(id);
+      this.cdr.markForCheck();
+    }
   }
 
   private setCanonicalUrl(url: string): void {
