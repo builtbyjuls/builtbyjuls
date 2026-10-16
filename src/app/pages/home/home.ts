@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { afterNextRender, Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 
@@ -12,10 +12,28 @@ import { RouterLink } from '@angular/router';
 export class Home implements OnInit {
   private readonly meta = inject(Meta);
   private readonly document = inject(DOCUMENT);
+  private readonly destroyRef = inject(DestroyRef);
 
+  protected readonly navSections = [
+    { id: 'showcase', num: '01', label: 'Showcase' },
+    { id: 'about', num: '02', label: 'About' },
+    { id: 'expertise', num: '03', label: 'Expertise' },
+    { id: 'impact', num: '04', label: 'Impact' },
+    { id: 'experience', num: '05', label: 'Experience' },
+    { id: 'education', num: '06', label: 'Education' },
+    { id: 'contact', num: '07', label: 'Contact' },
+  ];
+
+  protected readonly activeSection = signal<string>('showcase');
   protected readonly selectedNplusTab = signal<'problem' | 'explain' | 'fix'>('fix');
   protected readonly selectedFeynmanRung = signal<'vibe' | 'junior' | 'senior'>('senior');
   protected readonly copiedKey = signal<string | null>(null);
+
+  constructor() {
+    afterNextRender(() => {
+      this.initScrollSpy();
+    });
+  }
 
   ngOnInit(): void {
     const description =
@@ -67,6 +85,50 @@ export class Home implements OnInit {
         this.copiedKey.set(null);
       }
     }, 2000);
+  }
+
+  protected scrollToSection(event: Event, id: string): void {
+    event.preventDefault();
+    const element = this.document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      if (typeof window !== 'undefined' && window.history) {
+        window.history.pushState(null, '', `#${id}`);
+      }
+      this.activeSection.set(id);
+    }
+  }
+
+  private initScrollSpy(): void {
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
+      return;
+    }
+
+    const sectionElements = this.navSections
+      .map((s) => this.document.getElementById(s.id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            this.activeSection.set(entry.target.id);
+          }
+        }
+      },
+      {
+        rootMargin: '-15% 0px -65% 0px',
+        threshold: 0,
+      },
+    );
+
+    for (const el of sectionElements) {
+      observer.observe(el);
+    }
+
+    this.destroyRef.onDestroy(() => {
+      observer.disconnect();
+    });
   }
 
   private setCanonicalUrl(url: string): void {

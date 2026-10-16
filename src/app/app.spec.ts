@@ -84,11 +84,40 @@ describe('App', () => {
 
     const compiled = fixture.nativeElement as HTMLElement;
     const links = compiled.querySelectorAll<HTMLAnchorElement>(
-      'a[href="/resume/Julius_Cessar_Lapugot_Resume_One_Page_Condensed.pdf"]',
+      'a[href="/resume/jlapugot_resume.pdf"]',
     );
     expect(links.length).toBe(3);
     links.forEach((link) => {
-      expect(link.download).toBe('Julius_Cessar_Lapugot_Resume_One_Page_Condensed.pdf');
+      expect(link.download).toBe('jlapugot_resume.pdf');
+    });
+  });
+
+  it('should render the left-side section navigation rail with numbered links', async () => {
+    const fixture = TestBed.createComponent(App);
+    const router = TestBed.inject(Router);
+    await router.navigateByUrl('/');
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    const sideNavLinks = compiled.querySelectorAll<HTMLAnchorElement>(
+      '.side-nav-rail .side-nav-link',
+    );
+    expect(sideNavLinks.length).toBe(7);
+
+    const expectedSections = [
+      { num: '01', href: '#showcase' },
+      { num: '02', href: '#about' },
+      { num: '03', href: '#expertise' },
+      { num: '04', href: '#impact' },
+      { num: '05', href: '#experience' },
+      { num: '06', href: '#education' },
+      { num: '07', href: '#contact' },
+    ];
+
+    sideNavLinks.forEach((link, idx) => {
+      expect(link.getAttribute('href')).toBe(expectedSections[idx].href);
+      expect(link.querySelector('.nav-num')?.textContent?.trim()).toBe(expectedSections[idx].num);
     });
   });
 
