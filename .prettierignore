@@ -1,0 +1,6 @@
+dist/
+node_modules/
+.angular/
+.agents/
+package-lock.json
+AGENTS.md

@@ -1,0 +1,683 @@
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<div class="shell">
+  <header class="site-header">
+    <a class="wordmark" routerLink="/" aria-label="Built by Juls home">builtbyjuls</a>
+    <nav aria-label="Primary navigation">
+      <a href="#about">About</a>
+      <a href="#showcase">Showcase</a>
+      <a href="#impact">Impact</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#experience">Experience</a>
+      <a
+        href="/resume/Julius_Cessar_Lapugot_Resume_One_Page_Condensed.pdf"
+        download="Julius_Cessar_Lapugot_Resume_One_Page_Condensed.pdf"
+      >
+        Resume
+      </a>
+      <a href="mailto:juliusclapugot@gmail.com">Email</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="eyebrow">Senior Java Software Engineer</p>
+      <h1 id="hero-title">Architecting high-throughput, resilient enterprise systems.</h1>
+      <p class="lede">
+        Senior Java Software Engineer with 9+ years of experience delivering high-throughput
+        enterprise systems across energy, banking, and HR domains. Specialized in Java (Spring
+        Boot), microservices, distributed messaging, PostgreSQL query optimization, and resilient
+        system integration.
+      </p>
+
+      <div class="metrics-grid" aria-label="Key production metrics">
+        <div class="metric-card">
+          <div class="metric-value">50-90%</div>
+          <div class="metric-label">Query & Reporting Latency Cut</div>
+          <p class="metric-detail">
+            PostgreSQL schema redesign, query rewrites, and indexing for multi-tenant energy
+            platforms.
+          </p>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">90%</div>
+          <div class="metric-label">Ingestion Latency Reduction</div>
+          <p class="metric-detail">
+            Optimized time-series pipeline via JDBC batching and parallel validation with 100% data
+            integrity.
+          </p>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">99.9%</div>
+          <div class="metric-label">Production API Uptime</div>
+          <p class="metric-detail">
+            High-availability Java and Spring customer-bank messaging services for market
+            participants.
+          </p>
+        </div>
+      </div>
+
+      <div class="actions" aria-label="Primary actions">
+        <a class="button button-primary" href="mailto:juliusclapugot@gmail.com">Email me</a>
+        <a
+          class="button"
+          href="/resume/Julius_Cessar_Lapugot_Resume_One_Page_Condensed.pdf"
+          download="Julius_Cessar_Lapugot_Resume_One_Page_Condensed.pdf"
+        >
+          Download resume
+        </a>
+      </div>
+    </section>
+
+    <section class="content-section" id="showcase" aria-labelledby="showcase-title">
+      <h2 class="section-label" id="showcase-title">Showcase</h2>
+      <div class="showcase-container">
+        <p class="showcase-intro">
+          Production-grade test gates and AI agent systems built for enterprise correctness and
+          developer ergonomics. Explore the live interactive inspection panels below.
+        </p>
+
+        <!-- Showcase 1: nplus1-ai-gate-starter -->
+        <article class="showcase-card" aria-labelledby="nplus1-title">
+          <div class="showcase-header">
+            <div class="tag-cloud">
+              <span class="tag tag-accent">Java 21</span>
+              <span class="tag">Spring Boot 4.1</span>
+              <span class="tag">Spring AI</span>
+              <span class="tag">PostgreSQL Testcontainers</span>
+              <span class="tag">Redis 7</span>
+            </div>
+            <h3 class="showcase-title" id="nplus1-title">Spring AI Hibernate N+1 Test Gate</h3>
+            <p class="showcase-summary">
+              A reusable test starter (<code>nplus1-ai-gate-starter</code>) that catches Hibernate
+              N+1 query loops in JUnit 5, runs rollback-safe PostgreSQL
+              <code>EXPLAIN (FORMAT JSON)</code> plans inside JDBC savepoints, and prompts Spring AI
+              to generate verified, compile-ready Java fixes.
+            </p>
+          </div>
+
+          <div class="showcase-highlights">
+            <div class="highlight-item">
+              <strong>Zero Production Overhead</strong>
+              <span
+                >Runs exclusively in test scope (<code>@SpringBootTest</code>,
+                <code>@DataJpaTest</code>).</span
+              >
+            </div>
+            <div class="highlight-item">
+              <strong>Rollback-Safe EXPLAIN</strong>
+              <span
+                >Executes plans in savepoints with <code>enable_seqscan = off</code> for accurate
+                index checks.</span
+              >
+            </div>
+            <div class="highlight-item">
+              <strong>Sub-10ms Fingerprint Cache</strong>
+              <span>Redis and local SHA-256 hashing for instant repeat integration test runs.</span>
+            </div>
+          </div>
+
+          <!-- Interactive Inspector -->
+          <div class="inspector-box" aria-label="Interactive N+1 diagnostic inspector">
+            <div class="inspector-toolbar">
+              <div class="tab-group" role="tablist" aria-label="N+1 Diagnostic Steps">
+                <button
+                  type="button"
+                  class="tab-btn"
+                  role="tab"
+                  [attr.aria-selected]="selectedNplusTab() === 'problem'"
+                  (click)="selectNplusTab('problem')"
+                >
+                  1. Problem (N+1 Query Loop)
+                </button>
+                <button
+                  type="button"
+                  class="tab-btn"
+                  role="tab"
+                  [attr.aria-selected]="selectedNplusTab() === 'explain'"
+                  (click)="selectNplusTab('explain')"
+                >
+                  2. PostgreSQL EXPLAIN
+                </button>
+                <button
+                  type="button"
+                  class="tab-btn"
+                  role="tab"
+                  [attr.aria-selected]="selectedNplusTab() === 'fix'"
+                  (click)="selectNplusTab('fix')"
+                >
+                  3. Spring AI Structured Fix
+                </button>
+              </div>
+
+              <div class="toolbar-actions">
+                <button
+                  type="button"
+                  class="copy-btn"
+                  [class.copied]="copiedKey() === 'nplus1-dep'"
+                  (click)="
+                    copyCommand(
+                      '<dependency>\n  <groupId>com.builtbyjuls</groupId>\n  <artifactId>nplus1-ai-gate-starter</artifactId>\n  <version>1.0.0</version>\n  <scope>test</scope>\n</dependency>',
+                      'nplus1-dep'
+                    )
+                  "
+                >
+                  @if (copiedKey() === 'nplus1-dep') {
+                    Copied XML!
+                  } @else {
+                    Copy Maven Dep
+                  }
+                </button>
+              </div>
+            </div>
+
+            <div class="inspector-content">
+              @if (selectedNplusTab() === 'problem') {
+                <div class="code-viewport">
+                  <div class="code-meta">// JUnit 5 Integration Test triggering N+1 query loop</div>
+                  <pre><code><span class="code-keyword">@Test</span>
+<span class="code-keyword">void</span> shouldFetchParticipantSettlements() &#123;
+    <span class="code-comment">// 1 parent query: SELECT * FROM trading_participant</span>
+    List&lt;TradingParticipant&gt; participants = participantRepo.findAll();
+
+    <span class="code-comment">// N child queries: Triggered iteratively on lazy relation</span>
+    <span class="code-keyword">for</span> (TradingParticipant p : participants) &#123;
+        <span class="code-keyword">int</span> count = p.getSupplyContracts().size(); <span class="code-alert">// <-- 10 repeated SELECTs</span>
+    &#125;
+&#125;</code></pre>
+                </div>
+              }
+
+              @if (selectedNplusTab() === 'explain') {
+                <div class="code-viewport">
+                  <div class="code-meta">
+                    // Rollback-safe EXPLAIN (FORMAT JSON) captured in JDBC Savepoint
+                  </div>
+                  <pre><code>[
+  &#123;
+    <span class="code-string">"Plan"</span>: &#123;
+      <span class="code-string">"Node Type"</span>: <span class="code-string">"Seq Scan"</span>,
+      <span class="code-string">"Relation Name"</span>: <span class="code-string">"supply_contract"</span>,
+      <span class="code-string">"Startup Cost"</span>: 0.00,
+      <span class="code-string">"Total Cost"</span>: 35.50,
+      <span class="code-string">"Plan Rows"</span>: 10,
+      <span class="code-string">"Filter"</span>: <span class="code-string">"(participant_id = $1)"</span>
+    &#125;
+  &#125;
+]</code></pre>
+                </div>
+              }
+
+              @if (selectedNplusTab() === 'fix') {
+                <div class="code-viewport">
+                  <div class="code-meta">
+                    // Spring AI ChatClient remediation (zero hallucinations)
+                  </div>
+                  <pre><code><span class="code-keyword">public interface</span> <span class="code-type">TradingParticipantRepository</span> <span class="code-keyword">extends</span> JpaRepository&lt;TradingParticipant, Long&gt; &#123;
+
+    <span class="code-comment">// Remediation: Fetch relationships in 1 roundtrip via EntityGraph</span>
+    <span class="code-keyword">@EntityGraph</span>(attributePaths = &#123;<span class="code-string">"supplyContracts"</span>&#125;)
+    <span class="code-keyword">@Query</span>(<span class="code-string">"SELECT p FROM TradingParticipant p"</span>)
+    List&lt;TradingParticipant&gt; findAllWithContracts();
+&#125;</code></pre>
+                </div>
+              }
+            </div>
+          </div>
+
+          <div class="showcase-footer">
+            <a
+              class="showcase-link"
+              href="https://github.com/builtbyjuls/spring-ai-nplus1-test-gate"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Repository on GitHub ->
+            </a>
+          </div>
+        </article>
+
+        <!-- Showcase 2: simplifeyn -->
+        <article class="showcase-card" aria-labelledby="simplifeyn-title">
+          <div class="showcase-header">
+            <div class="tag-cloud">
+              <span class="tag tag-accent">Agent Skills Standard</span>
+              <span class="tag">GitHub Action</span>
+              <span class="tag">PR Reviewer</span>
+              <span class="tag">Claude / Gemini / Codex</span>
+            </div>
+            <h3 class="showcase-title" id="simplifeyn-title">
+              Simplifeyn: Physical Code Explainer
+            </h3>
+            <p class="showcase-summary">
+              An open-standard Agent Skill and GitHub Action that explains code changes and PR diffs
+              the way Richard Feynman explained physics: physical causality first, one honest
+              everyday analogy with its exact limits, and an audience-calibrated ladder.
+            </p>
+          </div>
+
+          <div class="showcase-highlights">
+            <div class="highlight-item">
+              <strong>Brevity Constraint</strong>
+              <span
+                >Target &lt; 170 prose words; zero chat filler or redundant corporate
+                preambles.</span
+              >
+            </div>
+            <div class="highlight-item">
+              <strong>The Ice-Water Test</strong>
+              <span
+                >One concrete sensory action in browser, terminal, or DevTools to verify
+                causality.</span
+              >
+            </div>
+            <div class="highlight-item">
+              <strong>Where the Machine Snaps</strong>
+              <span
+                >Names the exact code stress boundary or concurrency limit before prompt regressions
+                occur.</span
+              >
+            </div>
+          </div>
+
+          <!-- Interactive Audience Ladder -->
+          <div class="inspector-box" aria-label="Interactive Simplifeyn audience ladder">
+            <div class="inspector-toolbar">
+              <div class="tab-group" role="tablist" aria-label="Audience Calibration Lenses">
+                <button
+                  type="button"
+                  class="tab-btn"
+                  role="tab"
+                  [attr.aria-selected]="selectedFeynmanRung() === 'vibe'"
+                  (click)="selectFeynmanRung('vibe')"
+                >
+                  Lens: Vibe Coder
+                </button>
+                <button
+                  type="button"
+                  class="tab-btn"
+                  role="tab"
+                  [attr.aria-selected]="selectedFeynmanRung() === 'junior'"
+                  (click)="selectFeynmanRung('junior')"
+                >
+                  Lens: Junior Dev
+                </button>
+                <button
+                  type="button"
+                  class="tab-btn"
+                  role="tab"
+                  [attr.aria-selected]="selectedFeynmanRung() === 'senior'"
+                  (click)="selectFeynmanRung('senior')"
+                >
+                  Lens: Senior Dev
+                </button>
+              </div>
+
+              <div class="toolbar-actions">
+                <button
+                  type="button"
+                  class="copy-btn"
+                  [class.copied]="copiedKey() === 'simplifeyn-cli'"
+                  (click)="copyCommand('npx skills add builtbyjuls/simplifeyn', 'simplifeyn-cli')"
+                >
+                  @if (copiedKey() === 'simplifeyn-cli') {
+                    Copied CLI!
+                  } @else {
+                    Copy Skill Add
+                  }
+                </button>
+              </div>
+            </div>
+
+            <div class="inspector-content">
+              @if (selectedFeynmanRung() === 'vibe') {
+                <div class="feynman-card">
+                  <div class="feynman-step">
+                    <span class="feynman-badge">In Plain English</span>
+                    <p>
+                      The app now remembers what you typed even if you reload the page, instead of
+                      clearing the form every time.
+                    </p>
+                  </div>
+                  <div class="feynman-step">
+                    <span class="feynman-badge">The Ice-Water Test</span>
+                    <p>
+                      Type "Test" into the comment box, hit refresh (F5), and see that the text is
+                      still there.
+                    </p>
+                  </div>
+                  <div class="feynman-step">
+                    <span class="feynman-badge">Where the Machine Snaps</span>
+                    <p>
+                      Opening the site in a private browsing window or on a different device will
+                      not show your draft.
+                    </p>
+                  </div>
+                </div>
+              }
+
+              @if (selectedFeynmanRung() === 'junior') {
+                <div class="feynman-card">
+                  <div class="feynman-step">
+                    <span class="feynman-badge">Foundational Pattern</span>
+                    <p>
+                      Injected an LRU cache around <code>UserRepository.findById</code> to prevent
+                      redundant HTTP and database calls.
+                    </p>
+                  </div>
+                  <div class="feynman-step">
+                    <span class="feynman-badge">The Ice-Water Test</span>
+                    <p>
+                      Open DevTools Network panel, click the user profile twice; the second request
+                      finishes in 0ms via memory cache.
+                    </p>
+                  </div>
+                  <div class="feynman-step">
+                    <span class="feynman-badge">Where the Machine Snaps</span>
+                    <p>
+                      Exceeding 1,000 active entries triggers synchronous eviction on the calling
+                      thread, raising p99 latency.
+                    </p>
+                  </div>
+                </div>
+              }
+
+              @if (selectedFeynmanRung() === 'senior') {
+                <div class="feynman-card">
+                  <div class="feynman-step">
+                    <span class="feynman-badge">Concurrency & Invariants</span>
+                    <p>
+                      Decoupled transactional write path via RabbitMQ transactional outbox and
+                      replaced lazy collections with JPA EntityGraphs.
+                    </p>
+                  </div>
+                  <div class="feynman-step">
+                    <span class="feynman-badge">The Ice-Water Test</span>
+                    <p>
+                      Execute <code>ab -n 1000 -c 50</code> against the settlement endpoint; observe
+                      p99 latency drop from 2.4s to 120ms.
+                    </p>
+                  </div>
+                  <div class="feynman-step">
+                    <span class="feynman-badge">Where the Machine Snaps</span>
+                    <p>
+                      Consumer lag accumulates if the database outbox polling frequency exceeds the
+                      RabbitMQ channel prefetch count.
+                    </p>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+
+          <div class="showcase-footer">
+            <a
+              class="showcase-link"
+              href="https://github.com/builtbyjuls/simplifeyn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Repository on GitHub ->
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section" id="about" aria-labelledby="about-title">
+      <h2 class="section-label" id="about-title">About</h2>
+      <div class="prose">
+        <p>
+          I am Julius Cessar Lapugot, a Senior Java Software Engineer with over 9 years of
+          professional experience building, optimizing, and maintaining mission-critical enterprise
+          systems. My core engineering practice focuses on high-volume backend workflows,
+          distributed messaging, database performance, and resilient API architecture.
+        </p>
+        <p>
+          Throughout my tenure delivering multi-client enterprise engagements, I have untangled
+          legacy bottlenecks, accelerated data ingestion, and eliminated multi-second query delays.
+          Beyond architecture, I actively mentor junior engineers, establish robust integration
+          testing standards, and guide technical sprint deliveries with stakeholders.
+        </p>
+      </div>
+    </section>
+
+    <section class="content-section" id="expertise" aria-labelledby="expertise-title">
+      <h2 class="section-label" id="expertise-title">Expertise</h2>
+      <div class="expertise-list">
+        <article class="expertise-item">
+          <h3>Java & Backend Architecture</h3>
+          <p>
+            Java 8/11/17/21, Spring Boot, REST APIs, OpenAPI/Swagger, Microservices, and System
+            Design.
+          </p>
+          <div class="tag-cloud">
+            <span class="tag">Java 21</span>
+            <span class="tag">Spring Boot</span>
+            <span class="tag">REST APIs</span>
+            <span class="tag">Microservices</span>
+          </div>
+        </article>
+
+        <article class="expertise-item">
+          <h3>Data & Optimization</h3>
+          <p>
+            PostgreSQL, MariaDB, SQL Server, Redis, JPA/Hibernate, JDBC batching, and indexing
+            strategies.
+          </p>
+          <div class="tag-cloud">
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Query Tuning</span>
+            <span class="tag">Redis</span>
+            <span class="tag">JDBC Batching</span>
+          </div>
+        </article>
+
+        <article class="expertise-item">
+          <h3>Distributed Messaging</h3>
+          <p>
+            RabbitMQ event-driven architectures, asynchronous workflow decoupling, and resilient
+            integration.
+          </p>
+          <div class="tag-cloud">
+            <span class="tag">RabbitMQ</span>
+            <span class="tag">Event-Driven</span>
+            <span class="tag">System Integration</span>
+          </div>
+        </article>
+
+        <article class="expertise-item">
+          <h3>Testing & Telemetry</h3>
+          <p>
+            JUnit 5, Mockito, Testcontainers, CloudWatch, Prometheus, and integration test coverage
+            expansion.
+          </p>
+          <div class="tag-cloud">
+            <span class="tag">Testcontainers</span>
+            <span class="tag">JUnit 5</span>
+            <span class="tag">Mockito</span>
+            <span class="tag">Observability</span>
+          </div>
+        </article>
+
+        <article class="expertise-item expertise-full">
+          <h3>DevOps & Cloud Environment</h3>
+          <p>
+            Docker, Kubernetes, AWS (ECS, RDS, S3, SQS), Linux, CI/CD pipelines (GitLab, Jenkins),
+            Maven, Gradle, and Git.
+          </p>
+          <div class="tag-cloud">
+            <span class="tag">Docker</span>
+            <span class="tag">Kubernetes</span>
+            <span class="tag">AWS</span>
+            <span class="tag">CI/CD</span>
+            <span class="tag">Linux</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section" id="impact" aria-labelledby="impact-title">
+      <h2 class="section-label" id="impact-title">Impact</h2>
+      <div class="impact-grid">
+        <article class="impact-card">
+          <div class="impact-badge">Energy Sector</div>
+          <h3 class="impact-title">High-Frequency Telemetry Ingestion</h3>
+          <div class="impact-stat">90% Latency Reduction | 100% Data Integrity</div>
+          <p class="impact-summary">
+            Optimized high-frequency energy telemetry ingestion pipelines via native JDBC batching
+            and parallel validation, slashing processing latency while guaranteeing complete data
+            integrity.
+          </p>
+        </article>
+
+        <article class="impact-card">
+          <div class="impact-badge">Energy Market Platform</div>
+          <h3 class="impact-title">PostgreSQL Schema & Query Overhaul</h3>
+          <div class="impact-stat">50-90% Reporting & Bulk Latency Drop</div>
+          <p class="impact-summary">
+            Architected database schema redesigns, composite index structures, and query rewrites
+            for a multi-tenant market platform, drastically improving throughput for intensive
+            analytical reports.
+          </p>
+        </article>
+
+        <article class="impact-card">
+          <div class="impact-badge">Enterprise Billing</div>
+          <h3 class="impact-title">Consolidated Billing & Invoicing Engine</h3>
+          <div class="impact-stat">5 Legacy Feeds Automated</div>
+          <p class="impact-summary">
+            Consolidated disparate feeds from five legacy systems into an automated calculation and
+            invoicing engine, eliminating manual reconciliation overhead and accelerating monthly
+            billing cycles.
+          </p>
+        </article>
+
+        <article class="impact-card">
+          <div class="impact-badge">HR & Financial Workflows</div>
+          <h3 class="impact-title">Asynchronous Loan Approval Pipeline</h3>
+          <div class="impact-stat">Seconds to Milliseconds Query Speedup</div>
+          <p class="impact-summary">
+            Engineered an automated HRIS loan approval workflow integrated via RabbitMQ, replacing
+            manual phone/email processes and resolving ORM lazy-loading bottlenecks to cut query
+            execution latency.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section" id="experience" aria-labelledby="experience-title">
+      <h2 class="section-label" id="experience-title">Experience</h2>
+      <div class="timeline">
+        <div class="company-header">
+          <h3 class="company-name">Exist Software Labs, Inc.</h3>
+          <span class="company-period">Apr 2016 - Oct 2025 | 9 yrs 7 mos</span>
+        </div>
+
+        <div class="role-block">
+          <div class="role-header">
+            <h4 class="role-title">Senior Java Software Engineer</h4>
+            <span class="role-period">Jan 2020 - Oct 2025</span>
+          </div>
+          <ul class="role-highlights">
+            <li>
+              Architected PostgreSQL schema redesign, query rewrites, and indexing strategies,
+              reducing reporting and bulk-processing latency by 50-90% for a multi-tenant energy
+              market platform.
+            </li>
+            <li>
+              Optimized time-series ingestion pipeline via JDBC batching and parallel validation,
+              cutting processing latency by 90% while ensuring 100% data integrity for
+              high-frequency energy telemetry uploads.
+            </li>
+            <li>
+              Consolidated disparate billing feeds from five legacy systems into an automated
+              calculation and invoicing engine, eliminating manual reconciliation overhead and
+              accelerating monthly billing cycles.
+            </li>
+            <li>
+              Engineered an HRIS loan approval workflow integrated via RabbitMQ, replacing manual
+              email/phone processes and cutting database query latency from seconds to milliseconds
+              via ORM lazy-loading fixes.
+            </li>
+            <li>
+              Mentored 10 junior engineers through technical onboarding, task breakdowns,
+              architecture design guidance, and code reviews; coordinated sprint deliveries directly
+              with project managers and clients.
+            </li>
+          </ul>
+        </div>
+
+        <div class="role-block">
+          <div class="role-header">
+            <h4 class="role-title">Software Engineer</h4>
+            <span class="role-period">Apr 2016 - Dec 2019</span>
+          </div>
+          <ul class="role-highlights">
+            <li>
+              Engineered a secure Java/Spring participant registration API with token
+              authentication, duplicate prevention, and document mappings, eliminating 10+ minutes
+              of manual entry and 5-10 forms per registration.
+            </li>
+            <li>
+              Elevated automated test coverage from 20% to 80% across trade-finance banking modules
+              using JUnit, Mockito, and Testcontainers, significantly decreasing regression defect
+              rates.
+            </li>
+            <li>
+              Delivered secure customer-bank messaging services and maintained high-availability
+              Java/Spring APIs sustaining 99.9% uptime for hundreds of active market participants.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="education" aria-labelledby="education-title">
+      <h2 class="section-label" id="education-title">Education</h2>
+      <div class="prose">
+        <div class="edu-item">
+          <h3>Bachelor of Science in Information Technology</h3>
+          <p class="edu-meta">Pamantasan ng Lungsod ng Valenzuela - Graduated 2016</p>
+        </div>
+        <div class="edu-item">
+          <h3>Languages</h3>
+          <p class="edu-meta">English (Professional proficiency) | Filipino (Native)</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="contact" aria-labelledby="contact-title">
+      <h2 class="section-label" id="contact-title">Contact</h2>
+      <div class="prose">
+        <p>
+          I am open to senior Java and backend engineering roles. Remote work is preferred, and
+          relocation is open for discussion. Based in Valenzuela City, Philippines.
+        </p>
+        <div class="contact-links">
+          <a class="button button-primary" href="mailto:juliusclapugot@gmail.com">
+            juliusclapugot&#64;gmail.com
+          </a>
+          <a
+            class="button"
+            href="/resume/Julius_Cessar_Lapugot_Resume_One_Page_Condensed.pdf"
+            download="Julius_Cessar_Lapugot_Resume_One_Page_Condensed.pdf"
+          >
+            Download Resume (PDF)
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="social-links" aria-label="Contact and profiles">
+      <a href="mailto:juliusclapugot@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/jlapugot" target="_blank" rel="noopener noreferrer"
+        >LinkedIn</a
+      >
+      <a href="https://github.com/builtbyjuls" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <p>Designed and built by Julius Cessar Lapugot.</p>
+  </footer>
+</div>
