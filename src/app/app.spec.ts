@@ -45,7 +45,9 @@ describe('App', () => {
 
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.textContent).toContain('Spring AI Hibernate N+1 Test Gate');
+    expect(compiled.textContent).toContain('Spring Modulith Strangler Bridge');
     expect(compiled.textContent).toContain('Simplifeyn: Physical Code Explainer');
+    expect(compiled.querySelector('.carousel-counter')?.textContent).toContain('Project 01 / 03');
 
     // Verify N+1 defaults to Problem tab (Step 1)
     expect(compiled.textContent).toContain('shouldFetchParticipantSettlements');
@@ -59,13 +61,54 @@ describe('App', () => {
     fixture.detectChanges();
     expect(compiled.textContent).toContain('Remediation: Fetch relationships');
 
-    // Verify carousel controls exist
+    // Advance to Showcase 2 (Spring Modulith Strangler Bridge)
     const nextBtn = Array.from(compiled.querySelectorAll<HTMLButtonElement>('.carousel-btn')).find(
       (b) => b.textContent?.includes('Next'),
     );
     expect(nextBtn).toBeTruthy();
     nextBtn?.click();
     fixture.detectChanges();
+    expect(compiled.querySelector('.carousel-counter')?.textContent).toContain('Project 02 / 03');
+
+    // Verify Strangler Bridge defaults to Runtime Slicing tab (Step 1)
+    expect(compiled.textContent).toContain('host-only: metering');
+
+    // Switch Strangler Bridge Tab to Shadow Parity Report (Step 2)
+    const shadowBtn = Array.from(compiled.querySelectorAll<HTMLButtonElement>('.tab-btn')).find(
+      (b) => b.textContent?.includes('2. Shadow Parity Report'),
+    );
+    expect(shadowBtn).toBeTruthy();
+    shadowBtn?.click();
+    fixture.detectChanges();
+    expect(compiled.textContent).toContain('MeteringApi.aggregateDailyMeterVolumes');
+    expect(compiled.textContent).toContain('Parity Status');
+
+    // Switch Strangler Bridge Tab to Live Cutover (Step 3)
+    const cutoverBtn = Array.from(compiled.querySelectorAll<HTMLButtonElement>('.tab-btn')).find(
+      (b) => b.textContent?.includes('3. Zero-Restart Cutover'),
+    );
+    expect(cutoverBtn).toBeTruthy();
+    cutoverBtn?.click();
+    fixture.detectChanges();
+    expect(compiled.textContent).toContain('/internal/modulith-bridge/routes');
+
+    // Verify Strangler Bridge Copy Maven Dep button
+    const stranglerInspector = compiled.querySelector(
+      '[aria-label="Interactive Modulith Strangler Bridge inspector"]',
+    );
+    const stranglerCopyBtn =
+      stranglerInspector?.querySelector<HTMLButtonElement>('.copy-btn') ?? null;
+    expect(stranglerCopyBtn).toBeTruthy();
+    expect(stranglerCopyBtn?.textContent).toContain('Copy Maven Dep');
+    stranglerCopyBtn?.click();
+    fixture.detectChanges();
+    expect(stranglerCopyBtn?.classList.contains('copied')).toBe(true);
+    expect(stranglerCopyBtn?.textContent).toContain('Copied XML!');
+
+    // Advance to Showcase 3 (Simplifeyn)
+    nextBtn?.click();
+    fixture.detectChanges();
+    expect(compiled.querySelector('.carousel-counter')?.textContent).toContain('Project 03 / 03');
 
     // Verify Simplifeyn defaults to Vibe Coder rung (Step 1)
     expect(compiled.textContent).toContain('In Plain English');
@@ -79,14 +122,10 @@ describe('App', () => {
     fixture.detectChanges();
     expect(compiled.textContent).toContain('Concurrency & Invariants');
 
-    // Switch back using Prev button
-    const prevBtn = Array.from(compiled.querySelectorAll<HTMLButtonElement>('.carousel-btn')).find(
-      (b) => b.textContent?.includes('Prev'),
-    );
-    expect(prevBtn).toBeTruthy();
-    prevBtn?.click();
+    // Wrap around back to Project 01 using Next button
+    nextBtn?.click();
     fixture.detectChanges();
-    expect(compiled.querySelector('.carousel-counter')?.textContent).toContain('Project 01 / 02');
+    expect(compiled.querySelector('.carousel-counter')?.textContent).toContain('Project 01 / 03');
   });
 
   it('should offer the condensed one-page resume from every resume link', async () => {

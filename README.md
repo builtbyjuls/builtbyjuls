@@ -28,7 +28,16 @@ Senior Java Software Engineer with 9+ years of experience delivering high-throug
 - Generates compile-ready Java remediation suggestions using Spring AI and Redis caching.
 - **Stack**: Java 21, Spring Boot, Spring AI, PostgreSQL, Testcontainers, Redis 7.
 
-### 2. [`simplifeyn`](https://github.com/builtbyjuls/simplifeyn)
+### 2. [`spring-modulith-strangler-bridge`](https://github.com/builtbyjuls/spring-modulith-strangler-bridge)
+
+**Zero-Code Microservice Extraction, Runtime Slicing & Shadow Parity for Spring Modulith**
+
+- Boots single-JAR worker slices (`--modulith.bridge.host-only`) while pruning foreign module beans and Hibernate JPA entities.
+- Routes `@NamedInterface` contracts across `LOCAL`, `SHADOW`, and `REMOTE` modes with zero domain code changes and live runtime cutover.
+- Verifies migration correctness on Java 21 Virtual Threads with scale-normalized `BigDecimal` shadow parity, rollback-safe dry-run writes, and CI-agnostic JUnit/JSON/Markdown reports.
+- **Stack**: Java 21, Spring Boot 4.1, Spring Modulith 2.1, Hibernate 7, PostgreSQL 16 (Testcontainers), Docker, Kubernetes.
+
+### 3. [`simplifeyn`](https://github.com/builtbyjuls/simplifeyn)
 
 **Richard Feynman Technique PR Reviewer & Agent Skill**
 

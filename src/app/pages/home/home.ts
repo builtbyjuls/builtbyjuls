@@ -35,8 +35,9 @@ export class Home implements OnInit {
 
   protected readonly activeSection = signal<string>('showcase');
   protected readonly currentShowcaseIndex = signal<number>(0);
-  protected readonly totalShowcases = 2;
+  protected readonly totalShowcases = 3;
   protected readonly selectedNplusTab = signal<'problem' | 'explain' | 'fix'>('problem');
+  protected readonly selectedStranglerTab = signal<'slicing' | 'shadow' | 'cutover'>('slicing');
   protected readonly selectedFeynmanRung = signal<'vibe' | 'junior' | 'senior'>('vibe');
   protected readonly copiedKey = signal<string | null>(null);
 
@@ -80,6 +81,10 @@ export class Home implements OnInit {
 
   protected selectNplusTab(tab: 'problem' | 'explain' | 'fix'): void {
     this.selectedNplusTab.set(tab);
+  }
+
+  protected selectStranglerTab(tab: 'slicing' | 'shadow' | 'cutover'): void {
+    this.selectedStranglerTab.set(tab);
   }
 
   protected selectFeynmanRung(rung: 'vibe' | 'junior' | 'senior'): void {

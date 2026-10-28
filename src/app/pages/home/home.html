@@ -109,6 +109,17 @@
               (click)="goToShowcase(1)"
             >
               <span class="pill-num">02</span>
+              <span class="pill-title">Modulith Strangler Bridge</span>
+            </button>
+            <button
+              type="button"
+              role="tab"
+              class="carousel-pill"
+              [class.active]="currentShowcaseIndex() === 2"
+              [attr.aria-selected]="currentShowcaseIndex() === 2"
+              (click)="goToShowcase(2)"
+            >
+              <span class="pill-num">03</span>
               <span class="pill-title">Simplifeyn Reviewer</span>
             </button>
           </div>
@@ -304,8 +315,171 @@
           </article>
         </div>
 
-        <!-- Showcase 2: simplifeyn -->
+        <!-- Showcase 2: spring-modulith-strangler-bridge -->
         <div class="showcase-slide" [class.active]="currentShowcaseIndex() === 1">
+          <article class="showcase-card" aria-labelledby="strangler-title">
+            <div class="showcase-header">
+              <div class="tag-cloud">
+                <span class="tag tag-accent">Java 21</span>
+                <span class="tag">Spring Boot 4.1</span>
+                <span class="tag">Spring Modulith 2.1</span>
+                <span class="tag">PostgreSQL Testcontainers</span>
+                <span class="tag">Hibernate 7</span>
+              </div>
+              <h3 class="showcase-title" id="strangler-title">Spring Modulith Strangler Bridge</h3>
+              <p class="showcase-summary">
+                A reusable Spring Boot starter (<code>modulith-strangler-starter</code>) that brings
+                zero-code microservice extraction, single-JAR runtime module slicing, and
+                virtual-thread shadow parity verification to Spring Modulith applications.
+              </p>
+            </div>
+
+            <div class="showcase-highlights">
+              <div class="highlight-item">
+                <strong>Single-JAR Runtime Slicing</strong>
+                <span
+                  >Boots isolated worker JVMs (<code>--modulith.bridge.host-only</code>) while
+                  pruning foreign beans and JPA entities.</span
+                >
+              </div>
+              <div class="highlight-item">
+                <strong>Virtual-Thread Shadow Parity</strong>
+                <span
+                  >Runs <code>LOCAL</code> and <code>REMOTE</code> in parallel with scale-normalized
+                  <code>BigDecimal</code> parity and rollback-safe writes.</span
+                >
+              </div>
+              <div class="highlight-item">
+                <strong>Zero-Restart Live Cutover</strong>
+                <span
+                  >Switches <code>&#64;NamedInterface</code> routing (<code
+                    >LOCAL -&gt; SHADOW -&gt; REMOTE</code
+                  >) at runtime with automatic local fallback.</span
+                >
+              </div>
+            </div>
+
+            <!-- Interactive Inspector -->
+            <div class="inspector-box" aria-label="Interactive Modulith Strangler Bridge inspector">
+              <div class="inspector-toolbar">
+                <div class="tab-group" role="tablist" aria-label="Strangler Migration Stages">
+                  <button
+                    type="button"
+                    class="tab-btn"
+                    role="tab"
+                    [attr.aria-selected]="selectedStranglerTab() === 'slicing'"
+                    (click)="selectStranglerTab('slicing')"
+                  >
+                    1. Runtime Slicing
+                  </button>
+                  <button
+                    type="button"
+                    class="tab-btn"
+                    role="tab"
+                    [attr.aria-selected]="selectedStranglerTab() === 'shadow'"
+                    (click)="selectStranglerTab('shadow')"
+                  >
+                    2. Shadow Parity Report
+                  </button>
+                  <button
+                    type="button"
+                    class="tab-btn"
+                    role="tab"
+                    [attr.aria-selected]="selectedStranglerTab() === 'cutover'"
+                    (click)="selectStranglerTab('cutover')"
+                  >
+                    3. Zero-Restart Cutover
+                  </button>
+                </div>
+
+                <div class="toolbar-actions">
+                  <button
+                    type="button"
+                    class="copy-btn"
+                    [class.copied]="copiedKey() === 'strangler-dep'"
+                    (click)="
+                      copyCommand(
+                        '<dependency>\n  <groupId>com.builtbyjuls</groupId>\n  <artifactId>modulith-strangler-starter</artifactId>\n  <version>0.1.0</version>\n</dependency>',
+                        'strangler-dep'
+                      )
+                    "
+                  >
+                    @if (copiedKey() === 'strangler-dep') {
+                      Copied XML!
+                    } @else {
+                      Copy Maven Dep
+                    }
+                  </button>
+                </div>
+              </div>
+
+              <div class="inspector-content">
+                @if (selectedStranglerTab() === 'slicing') {
+                  <div class="code-viewport">
+                    <div class="code-meta">
+                      // Single-JAR worker slice pruning non-hosted beans &amp; Hibernate entities
+                    </div>
+                    <pre><code><span class="code-comment"># Worker JVM startup: strips contract &amp; settlement modules</span>
+<span class="code-keyword">modulith</span>:
+  <span class="code-keyword">bridge</span>:
+    <span class="code-keyword">host-only</span>: <span class="code-string">metering</span>
+    <span class="code-keyword">validate-contracts</span>: <span class="code-type">true</span>
+    <span class="code-keyword">modules</span>:
+      <span class="code-keyword">metering</span>:
+        <span class="code-keyword">mode</span>: <span class="code-string">SHADOW</span> <span class="code-comment"># LOCAL | SHADOW | REMOTE</span>
+        <span class="code-keyword">url</span>: <span class="code-string">http://metering-worker:8080</span>
+        <span class="code-keyword">fallback-to-local</span>: <span class="code-type">true</span></code></pre>
+                  </div>
+                }
+
+                @if (selectedStranglerTab() === 'shadow') {
+                  <div class="code-viewport">
+                    <div class="code-meta">
+                      // Virtual-thread parallel execution &amp; scale-normalized BigDecimal check
+                    </div>
+                    <pre><code>[<span class="code-type">MODULITH STRANGLER BRIDGE</span>] Module: metering | Mode: <span class="code-keyword">SHADOW</span>
+  Target Contract  : MeteringApi.aggregateDailyMeterVolumes(LocalDate)
+  Worker Node      : http://localhost:54812 (Active Slice: [<span class="code-string">metering</span>], Pruned: [<span class="code-comment">contract, settlement</span>])
+  Local Latency    : 14.2 ms (20 contracts, 5,760 interval rows)
+  Remote Latency   : 18.7 ms (HTTP POST /internal/modulith-bridge/invoke)
+  Parity Status    : <span class="code-type">MATCH</span> (20/20 records identical, BigDecimal scale normalized)</code></pre>
+                  </div>
+                }
+
+                @if (selectedStranglerTab() === 'cutover') {
+                  <div class="code-viewport">
+                    <div class="code-meta">
+                      // Live topology update without JVM restarts (fallback-safe)
+                    </div>
+                    <pre><code><span class="code-keyword">POST</span> /internal/modulith-bridge/routes HTTP/1.1
+<span class="code-type">X-Modulith-Bridge-Secret</span>: &#123;pre-shared-token&#125;
+
+&#123;
+  <span class="code-string">"module"</span>: <span class="code-string">"metering"</span>,
+  <span class="code-string">"mode"</span>: <span class="code-string">"REMOTE"</span>,
+  <span class="code-string">"fallbackToLocal"</span>: <span class="code-type">true</span>,
+  <span class="code-string">"shadowSampleRate"</span>: 1.0
+&#125;</code></pre>
+                  </div>
+                }
+              </div>
+            </div>
+
+            <div class="showcase-footer">
+              <a
+                class="showcase-link"
+                href="https://github.com/builtbyjuls/spring-modulith-strangler-bridge"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View Repository on GitHub ->
+              </a>
+            </div>
+          </article>
+        </div>
+
+        <!-- Showcase 3: simplifeyn -->
+        <div class="showcase-slide" [class.active]="currentShowcaseIndex() === 2">
           <article class="showcase-card" aria-labelledby="simplifeyn-title">
             <div class="showcase-header">
               <div class="tag-cloud">
